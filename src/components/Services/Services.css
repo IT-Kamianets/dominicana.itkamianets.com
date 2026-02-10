@@ -1,0 +1,98 @@
+/* СТИЛІ SERVICES СЕКЦІЇ */
+
+.services-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #fef9f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.services-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(201, 169, 97, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Картки послуг */
+.service-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  min-height: 220px;
+  border-radius: 16px !important;
+  border: 1px solid rgba(201, 169, 97, 0.1) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.service-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--shadow-lg) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: var(--primary-color) !important;
+}
+
+/* Іконки послуг */
+.service-icon {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(201, 169, 97, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+  border-radius: 16px;
+  margin: 0 auto;
+  color: var(--primary-color);
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.15) rotate(-5deg);
+  background: linear-gradient(135deg, rgba(201, 169, 97, 0.2) 0%, rgba(212, 175, 55, 0.15) 100%);
+  box-shadow: 0 8px 16px rgba(201, 169, 97, 0.25);
+}
+
+.service-card .card-title {
+  font-weight: 700;
+  color: var(--dark-color);
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.service-card:hover .card-title {
+  color: var(--primary-color);
+}
+
+.service-card .card-text {
+  color: #64748b;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .service-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .service-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .service-card {
+    min-height: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .service-card .card-title {
+    font-size: 1.1rem;
+  }
+}

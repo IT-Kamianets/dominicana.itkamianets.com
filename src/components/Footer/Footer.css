@@ -1,0 +1,104 @@
+/* СТИЛІ FOOTER */
+
+.footer {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+  margin-top: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+}
+
+.footer h5 {
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.footer-text {
+  color: #cbd5e1 !important;
+  line-height: 1.8;
+}
+
+/* Посилання в футері */
+.footer-link {
+  color: #cbd5e1 !important;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* Соціальні мережі */
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 1.3rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-link:hover {
+  background: var(--gradient-primary);
+  transform: translateY(-5px) rotate(5deg);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+  border-color: transparent;
+}
+
+/* Нижня частина футера */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  margin-top: 2rem;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .footer .col-md-4 {
+    text-align: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
