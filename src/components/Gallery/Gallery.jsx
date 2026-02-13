@@ -1,24 +1,46 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { MasonryPhotoAlbum } from 'react-photo-album';
+import 'react-photo-album/masonry.css';
 import { galleryImages } from '../../config';
 import './Gallery.css';
 
+// Помірна різноманітність — помітна, але без екстриму
+const photoRatios = [
+  { w: 1600, h: 1000 }, // 1 — широке (8:5)
+  { w: 1000, h: 1300 }, // 2 — вертикальне
+  { w: 1200, h: 1100 }, // 3 — майже квадрат
+  { w: 1500, h: 1000 }, // 4 — широке (3:2)
+  { w: 1000, h: 1200 }, // 5 — вертикальне
+  { w: 1300, h: 1000 }, // 6 — помірно широке
+  { w: 1000, h: 1350 }, // 7 — вертикальне
+  { w: 1500, h: 1050 }, // 8 — широке
+  { w: 1050, h: 1300 }, // 9 — вертикальне
+];
+
+// Конвертуємо galleryImages в формат react-photo-album
+const photos = galleryImages.map((img, i) => ({
+  src: img.src,
+  width: photoRatios[i]?.w || 1600,
+  height: photoRatios[i]?.h || 1200,
+  alt: img.alt,
+  key: img.id.toString(),
+}));
+
 const Gallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const openLightbox = (index) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
 
   const goNext = useCallback(() => {
     setLightboxIndex((prev) =>
-      prev !== null ? (prev + 1) % galleryImages.length : null
+      prev !== null ? (prev + 1) % photos.length : null
     );
   }, []);
 
   const goPrev = useCallback(() => {
     setLightboxIndex((prev) =>
-      prev !== null
-        ? (prev - 1 + galleryImages.length) % galleryImages.length
-        : null
+      prev !== null ? (prev - 1 + photos.length) % photos.length : null
     );
   }, []);
 
@@ -37,13 +59,6 @@ const Gallery = () => {
     };
   }, [lightboxIndex, goNext, goPrev]);
 
-  // Визначаємо розміри для masonry ефекту
-  const getItemClass = (index) => {
-    // Перше та кожне 5-те фото — велике
-    if (index === 0 || index === 4) return 'gallery-item--large';
-    return '';
-  };
-
   return (
     <section id="gallery" className="section gallery-section">
       <div className="container">
@@ -52,29 +67,41 @@ const Gallery = () => {
           Погляньте на наш готель та атмосферу, яку ми створюємо
         </p>
 
-        <div className="gallery-grid">
-          {galleryImages.map((image, index) => (
-            <div
-              className={`gallery-item ${getItemClass(index)}`}
-              key={image.id}
-              onClick={() => openLightbox(index)}
-              role="button"
-              tabIndex={0}
-              aria-label={`Відкрити фото: ${image.alt}`}
-              data-animate="scale-up"
-              style={{ transitionDelay: `${index * 60}ms` }}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="gallery-item__image"
-                loading="lazy"
-              />
-              <div className="gallery-item__overlay">
-                <span className="gallery-item__label">{image.alt}</span>
-              </div>
-            </div>
-          ))}
+        <div className="gallery-album">
+          <MasonryPhotoAlbum
+            photos={photos}
+            columns={(containerWidth) => {
+              if (containerWidth < 500) return 2;
+              if (containerWidth < 900) return 3;
+              return 4;
+            }}
+            spacing={10}
+            onClick={({ index }) => setLightboxIndex(index)}
+            render={{
+              image: (props, { photo, index }) => (
+                <div
+                  className={`gallery-item ${
+                    hoveredIndex === index
+                      ? 'gallery-item--hovered'
+                      : hoveredIndex !== null
+                        ? 'gallery-item--pushed'
+                        : ''
+                  }`}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <img
+                    {...props}
+                    className="gallery-item__image"
+                    loading="lazy"
+                  />
+                  <div className="gallery-item__overlay">
+                    <span className="gallery-item__label">{photo.alt}</span>
+                  </div>
+                </div>
+              ),
+            }}
+          />
         </div>
       </div>
 
@@ -82,17 +109,17 @@ const Gallery = () => {
       {lightboxIndex !== null && (
         <div className="lightbox" onClick={closeLightbox}>
           <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
-            <button className="lightbox__close" onClick={closeLightbox} aria-label="Закрити">✕</button>
-            <button className="lightbox__nav lightbox__nav--prev" onClick={goPrev} aria-label="Попереднє">‹</button>
+            <button className="lightbox__close" onClick={closeLightbox}>✕</button>
+            <button className="lightbox__nav lightbox__nav--prev" onClick={goPrev}>‹</button>
             <img
-              src={galleryImages[lightboxIndex].src}
-              alt={galleryImages[lightboxIndex].alt}
+              src={photos[lightboxIndex].src}
+              alt={photos[lightboxIndex].alt}
               className="lightbox__image"
             />
-            <button className="lightbox__nav lightbox__nav--next" onClick={goNext} aria-label="Наступне">›</button>
+            <button className="lightbox__nav lightbox__nav--next" onClick={goNext}>›</button>
             <p className="lightbox__caption">
-              {galleryImages[lightboxIndex].alt}
-              <span className="lightbox__counter">{lightboxIndex + 1} / {galleryImages.length}</span>
+              {photos[lightboxIndex].alt}
+              <span className="lightbox__counter">{lightboxIndex + 1} / {photos.length}</span>
             </p>
           </div>
         </div>

@@ -1,13 +1,12 @@
 /* ============================================
    ABOUT SECTION
-   Фон: tertiary (хатікі)
    ============================================ */
 
 .about-section {
   background-color: var(--bg-tertiary);
 }
 
-/* ========== INTRO (фото + текст) ========== */
+/* ========== INTRO (одне фото + текст) ========== */
 
 .about-intro {
   display: grid;
@@ -35,6 +34,15 @@
   min-height: 300px;
   object-fit: cover;
   display: block;
+  transition: transform var(--transition-slow);
+}
+
+.about-intro__photo:hover img {
+  transform: scale(1.04);
+}
+
+.about-intro__text {
+  padding: var(--spacing-md) 0;
 }
 
 .about-lead {
@@ -44,7 +52,7 @@
   margin-bottom: var(--spacing-lg);
 }
 
-/* Highlights (числа) */
+/* Highlights */
 .about-highlights {
   display: flex;
   gap: var(--spacing-xl);
@@ -126,7 +134,7 @@
   line-height: var(--line-height-relaxed);
 }
 
-/* ========== FEATURES ========== */
+/* ========== FEATURES (каскадний hover) ========== */
 
 .about-features-title {
   font-family: var(--font-heading);
@@ -161,13 +169,25 @@
   background-color: var(--bg-primary);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-base);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
 }
 
-.about-feature-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
+/* Каскадний hover */
+.cascade-hover .about-feature-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: var(--shadow-lg);
+  z-index: 2;
+}
+
+.cascade-hover .about-feature-card:hover + .about-feature-card {
+  transform: translateX(6px) scale(0.97);
+  opacity: 0.85;
+}
+
+.cascade-hover .about-feature-card:has(+ .about-feature-card:hover) {
+  transform: translateX(-6px) scale(0.97);
+  opacity: 0.85;
 }
 
 .about-feature-icon {

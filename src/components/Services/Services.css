@@ -1,6 +1,5 @@
 /* ============================================
    SERVICES SECTION
-   Фон: tertiary (хатікі)
    ============================================ */
 
 .services-section {
@@ -31,13 +30,25 @@
   background-color: var(--bg-primary);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-xs);
-  transition: all var(--transition-base);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
 }
 
-.service-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
+/* Каскадний hover */
+.cascade-hover .service-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: var(--shadow-lg);
+  z-index: 2;
+}
+
+.cascade-hover .service-card:hover + .service-card {
+  transform: translateX(4px) scale(0.97);
+  opacity: 0.85;
+}
+
+.cascade-hover .service-card:has(+ .service-card:hover) {
+  transform: translateX(-4px) scale(0.97);
+  opacity: 0.85;
 }
 
 .service-card__icon {

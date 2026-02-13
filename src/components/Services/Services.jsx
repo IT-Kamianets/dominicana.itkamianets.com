@@ -12,7 +12,7 @@ const Services = () => {
           Все необхідне для вашого комфортного відпочинку
         </p>
 
-        <div className="services-grid">
+        <div className="services-grid cascade-hover">
           {services.map((service, i) => (
             <div
               className="service-card"

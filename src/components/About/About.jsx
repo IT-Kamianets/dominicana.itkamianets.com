@@ -2,6 +2,7 @@ import React from 'react';
 import { hotelConfig, hotelFeatures } from '../../config';
 import Icon from '../Icon';
 import './About.css';
+import hotelImage from '../../assets/images/hotel.png';
 
 const About = () => {
   return (
@@ -12,16 +13,16 @@ const About = () => {
           Відкрийте для себе ідеальне поєднання комфорту та гостинності у серці історичного міста
         </p>
 
-        {/* Опис з фото */}
-        <div className="about-intro" data-animate="fade-in">
-          <div className="about-intro__photo">
+        {/* Опис з одним фото */}
+        <div className="about-intro">
+          <div className="about-intro__photo" data-animate="slide-in-left">
             <img
-              src="https://udominicanakamianetspodilskyi.ua-hotel.com/data/Photos/OriginalPhoto/14989/1498989/1498989439/photo-u-dominicana-kamianets-podilskyi-6.JPEG"
-              alt="Готель У Домінікана"
-              loading="lazy"
-            />
+  src={hotelImage}
+  alt="Готель У Домінікана"
+  loading="lazy"
+/>
           </div>
-          <div className="about-intro__text">
+          <div className="about-intro__text" data-animate="fade-in">
             <p className="about-lead">
               {hotelConfig.description}
             </p>
@@ -67,9 +68,9 @@ const About = () => {
           ))}
         </div>
 
-        {/* Переваги */}
+        {/* Переваги — каскадний hover */}
         <h3 className="about-features-title" data-animate="fade-in">Чому обирають нас</h3>
-        <div className="about-features-grid">
+        <div className="about-features-grid cascade-hover">
           {hotelFeatures.map((feature, i) => (
             <div
               className="about-feature-card"
