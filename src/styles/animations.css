@@ -1,0 +1,367 @@
+/* ============================================
+   АНІМАЦІЇ: Y Dominikana
+   Scroll animations, hover effects, transitions
+   Performance-first: тільки transform + opacity
+   ============================================ */
+
+/* ========== SCROLL ANIMATIONS (базові стани) ========== */
+
+/* Елементи до анімації (initial state) */
+[data-animate] {
+  opacity: 0;
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+/* Елементи після анімації (animated state) */
+[data-animate].animated {
+  opacity: 1;
+  transform: none;
+}
+
+/* ========== FADE ANIMATIONS ========== */
+
+/* Fade In */
+[data-animate="fade-in"] {
+  opacity: 0;
+}
+
+[data-animate="fade-in"].animated {
+  opacity: 1;
+}
+
+/* ========== SLIDE ANIMATIONS ========== */
+
+/* Slide In від Left */
+[data-animate="slide-in-left"] {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+[data-animate="slide-in-left"].animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide In від Right */
+[data-animate="slide-in-right"] {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+[data-animate="slide-in-right"].animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide In від Top */
+[data-animate="slide-in-top"] {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+[data-animate="slide-in-top"].animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide In від Bottom */
+[data-animate="slide-in-bottom"] {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+[data-animate="slide-in-bottom"].animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== SCALE ANIMATIONS ========== */
+
+/* Scale In (zoom in) */
+[data-animate="scale-in"] {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+[data-animate="scale-in"].animated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Scale Up (легкий zoom) */
+[data-animate="scale-up"] {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+[data-animate="scale-up"].animated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ========== STAGGER (послідовна поява) ========== */
+
+/* Базовий delay для stagger ефекту */
+[data-animate].stagger-1 { transition-delay: 100ms; }
+[data-animate].stagger-2 { transition-delay: 200ms; }
+[data-animate].stagger-3 { transition-delay: 300ms; }
+[data-animate].stagger-4 { transition-delay: 400ms; }
+[data-animate].stagger-5 { transition-delay: 500ms; }
+[data-animate].stagger-6 { transition-delay: 600ms; }
+
+/* ========== HOVER EFFECTS ========== */
+
+/* Button Lift */
+.hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hover-lift:active {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Card Lift (менший ефект) */
+.hover-card-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Image Zoom */
+.hover-zoom {
+  overflow: hidden;
+}
+
+.hover-zoom img {
+  transition: transform var(--transition-slow);
+  will-change: transform;
+}
+
+.hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Slight Scale */
+.hover-scale {
+  transition: transform var(--transition-base);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Opacity */
+.hover-opacity {
+  transition: opacity var(--transition-fast);
+}
+
+.hover-opacity:hover {
+  opacity: var(--opacity-hover);
+}
+
+/* ========== LOADING ANIMATIONS ========== */
+
+/* Spinner */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Pulse (для loading states) */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Skeleton Loading */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary) 0px,
+    var(--bg-secondary) 40px,
+    var(--bg-tertiary) 80px
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* ========== PAGE TRANSITIONS ========== */
+
+/* Fade Page Transition */
+.page-transition-fade {
+  animation: fadeIn var(--transition-slow);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide Page Transition */
+.page-transition-slide {
+  animation: slideInUp var(--transition-slow);
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== MODAL/OVERLAY ANIMATIONS ========== */
+
+/* Backdrop Fade */
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.backdrop-fade-in {
+  animation: backdropFadeIn var(--transition-base);
+}
+
+/* Modal Scale In */
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-scale-in {
+  animation: modalScaleIn var(--transition-base);
+}
+
+/* ========== СПЕЦИФІЧНІ АНІМАЦІЇ ДЛЯ HERO ========== */
+
+/* Hero Title Animation */
+@keyframes heroTitleIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title-animation {
+  animation: heroTitleIn 0.8s var(--ease-out) 0.3s both;
+}
+
+/* Hero Subtitle Animation */
+.hero-subtitle-animation {
+  animation: heroTitleIn 0.8s var(--ease-out) 0.6s both;
+}
+
+/* Hero Button Animation */
+.hero-button-animation {
+  animation: heroTitleIn 0.8s var(--ease-out) 0.9s both;
+}
+
+/* ========== UTILITY CLASSES ========== */
+
+/* GPU acceleration hint */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Smooth scroll */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* ========== ACCESSIBILITY: REDUCED MOTION ========== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  /* Вимкнути всі data-animate анімації */
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* Вимкнути hover анімації */
+  .hover-lift:hover,
+  .hover-card-lift:hover,
+  .hover-scale:hover {
+    transform: none !important;
+  }
+  
+  .hover-zoom:hover img {
+    transform: none !important;
+  }
+}
+
+/* ========== PRINT ========== */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

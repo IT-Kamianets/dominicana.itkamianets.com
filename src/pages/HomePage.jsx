@@ -4,28 +4,21 @@ import About from '../components/About/About';
 import Rooms from '../components/Rooms/Rooms';
 import Services from '../components/Services/Services';
 import Gallery from '../components/Gallery/Gallery';
+import Testimonials from '../components/Testimonials/Testimonials';
 import Location from '../components/Location/Location';
+import Contact from '../components/Contact/Contact';
 
 const HomePage = () => {
   return (
     <main>
-      {/* Hero секція */}
       <Hero />
-      
-      {/* Про готель */}
       <About />
-      
-      {/* Номери */}
       <Rooms />
-      
-      {/* Послуги */}
       <Services />
-      
-      {/* Галерея */}
       <Gallery />
-      
-      {/* Розташування */}
+      <Testimonials />
       <Location />
+      <Contact />
     </main>
   );
 };

@@ -1,0 +1,253 @@
+/* ============================================
+   ДИЗАЙН-СИСТЕМА: Y Dominikana
+   Версія: 1.0
+   Дата: 12.02.2026
+   ============================================ */
+
+:root {
+  /* ========== КОЛЬОРИ ========== */
+  
+  /* Основні кольори */
+  --color-white: #FFFFFF;
+  --color-khaki-light: #F5F1E8;
+  --color-khaki: #EDE7DC;
+  --color-brown-soft: #A68A64;
+  --color-brown-medium: #8B6F47;
+  --color-brown-dark: #4A3F35;
+  --color-brown-darker: #2C2418;
+  
+  /* Фони */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FAFAF8;
+  --bg-tertiary: #F5F1E8;
+  --bg-card: #FFFEFA;
+  --bg-overlay: rgba(44, 36, 24, 0.6);
+  
+  /* Текст */
+  --text-primary: #2C2418;
+  --text-secondary: #4A3F35;
+  --text-muted: #8B8276;
+  --text-on-dark: #FFFFFF;
+  --text-on-overlay: #FFFFFF;
+  
+  /* Акценти */
+  --accent-primary: #8B6F47;
+  --accent-hover: #A68A64;
+  --accent-active: #6B5537;
+  
+  /* Бордери */
+  --border-color: #E5DFD3;
+  --border-color-dark: #D5C9BD;
+  
+  /* Стани */
+  --success: #4A7C59;
+  --warning: #D4A574;
+  --error: #C95D63;
+  --info: #5B7C99;
+  
+  /* ========== ТИПОГРАФІКА ========== */
+  
+  /* Шрифти */
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  
+  /* Розміри шрифтів */
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-xl: 1.25rem;      /* 20px */
+  --font-size-2xl: 1.5rem;      /* 24px */
+  --font-size-3xl: 2rem;        /* 32px */
+  --font-size-4xl: 2.5rem;      /* 40px */
+  --font-size-5xl: 3rem;        /* 48px */
+  --font-size-hero: 4rem;       /* 64px */
+  
+  /* Вага шрифтів */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Висота рядка */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --line-height-loose: 2;
+  
+  /* Відстань між літерами */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  
+  /* ========== SPACING (8px базова одиниця) ========== */
+  
+  --spacing-0: 0;
+  --spacing-xs: 0.5rem;    /* 8px */
+  --spacing-sm: 1rem;      /* 16px */
+  --spacing-md: 1.5rem;    /* 24px */
+  --spacing-lg: 2rem;      /* 32px */
+  --spacing-xl: 3rem;      /* 48px */
+  --spacing-2xl: 4rem;     /* 64px */
+  --spacing-3xl: 6rem;     /* 96px */
+  --spacing-4xl: 8rem;     /* 128px */
+  
+  /* ========== BORDERS ========== */
+  
+  --border-radius-none: 0;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-2xl: 24px;
+  --border-radius-full: 9999px;
+  
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 4px;
+  
+  /* ========== SHADOWS ========== */
+  
+  --shadow-xs: 0 1px 2px rgba(44, 36, 24, 0.05);
+  --shadow-sm: 0 1px 3px rgba(44, 36, 24, 0.08);
+  --shadow-md: 0 4px 12px rgba(44, 36, 24, 0.12);
+  --shadow-lg: 0 8px 24px rgba(44, 36, 24, 0.15);
+  --shadow-xl: 0 16px 48px rgba(44, 36, 24, 0.20);
+  --shadow-2xl: 0 24px 64px rgba(44, 36, 24, 0.25);
+  
+  /* Shadow для карток при hover */
+  --shadow-card: var(--shadow-md);
+  --shadow-card-hover: var(--shadow-lg);
+  
+  /* ========== TRANSITIONS ========== */
+  
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slower: 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Easing functions */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* ========== BREAKPOINTS (для JS) ========== */
+  
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1280px;
+  --breakpoint-ultrawide: 1536px;
+  
+  /* ========== Z-INDEX ========== */
+  
+  --z-base: 1;
+  --z-elevated: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 1000;
+  --z-modal: 1100;
+  --z-overlay: 1200;
+  --z-tooltip: 1300;
+  
+  /* ========== LAYOUT ========== */
+  
+  /* Container */
+  --container-max-width: 1200px;
+  --container-padding: var(--spacing-md);
+  
+  /* Section padding */
+  --section-padding-y: var(--spacing-3xl);
+  --section-padding-y-mobile: var(--spacing-2xl);
+  
+  /* Grid gaps */
+  --grid-gap: var(--spacing-lg);
+  --grid-gap-mobile: var(--spacing-md);
+  
+  /* ========== ANIMATION DURATIONS ========== */
+  
+  --animation-duration-fast: 200ms;
+  --animation-duration-normal: 400ms;
+  --animation-duration-slow: 600ms;
+  
+  /* ========== MISC ========== */
+  
+  /* Opacity levels */
+  --opacity-disabled: 0.5;
+  --opacity-hover: 0.8;
+  --opacity-overlay: 0.6;
+  
+  /* Blur */
+  --blur-sm: 4px;
+  --blur-md: 8px;
+  --blur-lg: 16px;
+}
+
+/* ========== RESPONSIVE OVERRIDES ========== */
+
+/* Mobile (<768px) */
+@media (max-width: 767px) {
+  :root {
+    --font-size-hero: 2.5rem;      /* 40px замість 64px */
+    --font-size-5xl: 2rem;         /* 32px замість 48px */
+    --font-size-4xl: 1.75rem;      /* 28px замість 40px */
+    --font-size-3xl: 1.5rem;       /* 24px замість 32px */
+    
+    --section-padding-y: var(--spacing-2xl);
+    --container-padding: var(--spacing-sm);
+    --grid-gap: var(--spacing-md);
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --font-size-hero: 3rem;        /* 48px */
+    --section-padding-y: calc(var(--spacing-3xl) * 0.75);
+  }
+}
+
+/* Desktop (1024px+) - значення за замовчуванням */
+
+/* Wide (1280px+) */
+@media (min-width: 1280px) {
+  :root {
+    --container-max-width: 1280px;
+    --section-padding-y: calc(var(--spacing-3xl) * 1.2);
+  }
+}
+
+/* Ultrawide (1536px+) */
+@media (min-width: 1536px) {
+  :root {
+    --container-max-width: 1400px;
+  }
+}
+
+/* ========== DARK MODE (для майбутнього) ========== */
+/* 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1A1510;
+    --bg-secondary: #2C2418;
+    --text-primary: #F5F1E8;
+    // ... інші кольори
+  }
+}
+*/
+
+/* ========== REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+    --transition-slower: 0ms;
+    --animation-duration-fast: 0ms;
+    --animation-duration-normal: 0ms;
+    --animation-duration-slow: 0ms;
+  }
+}

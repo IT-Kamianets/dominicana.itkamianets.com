@@ -1,104 +1,138 @@
-/* СТИЛІ FOOTER */
+/* ============================================
+   FOOTER
+   Теплий темний фон (коричневий, не синій)
+   ============================================ */
 
 .footer {
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
-  margin-top: auto;
-  position: relative;
-  overflow: hidden;
+  background-color: var(--color-brown-darker);
+  color: rgba(255, 255, 255, 0.75);
+  padding: var(--spacing-2xl) 0 0;
 }
 
-.footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  padding-bottom: var(--spacing-xl);
 }
 
-.footer h5 {
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
+@media (min-width: 768px) {
+  .footer__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.footer-text {
-  color: #cbd5e1 !important;
-  line-height: 1.8;
+.footer__col {
+  margin-bottom: var(--spacing-lg);
 }
 
-/* Посилання в футері */
-.footer-link {
-  color: #cbd5e1 !important;
+.footer__heading {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: #fff;
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer__text {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Links */
+.footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__links li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer__links a {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  transition: all 0.3s ease;
-  position: relative;
+  transition: color var(--transition-fast);
 }
 
-.footer-link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary-color);
-  transition: width 0.3s ease;
+.footer__links a:hover {
+  color: #fff;
 }
 
-.footer-link:hover {
-  color: #ffffff !important;
+/* Contacts */
+.footer__contacts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__contacts li {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: var(--spacing-xs);
+  line-height: var(--line-height-relaxed);
+}
+
+.footer__contacts a {
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
-.footer-link:hover::after {
-  width: 100%;
+.footer__contacts a:hover {
+  color: #fff;
 }
 
-/* Соціальні мережі */
-.social-links {
+/* Social */
+.footer__social {
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-sm);
 }
 
-.social-link {
+.footer__social a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 45px;
-  height: 45px;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--border-radius-full);
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
   text-decoration: none;
-  font-size: 1.3rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-fast);
 }
 
-.social-link:hover {
-  background: var(--gradient-primary);
-  transform: translateY(-5px) rotate(5deg);
-  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-  border-color: transparent;
+.footer__social a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
 }
 
-/* Нижня частина футера */
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-  margin-top: 2rem;
+/* Bottom */
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--spacing-sm) 0;
+  text-align: center;
 }
 
-/* Адаптивність */
-@media (max-width: 768px) {
-  .footer .col-md-4 {
+.footer__bottom p {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 767px) {
+  .footer__col {
     text-align: center;
   }
-  
-  .social-links {
+
+  .footer__social {
     justify-content: center;
   }
 }

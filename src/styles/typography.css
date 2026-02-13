@@ -1,0 +1,314 @@
+/* ============================================
+   ТИПОГРАФІКА: Y Dominikana
+   Шрифти, заголовки, параграфи
+   ============================================ */
+
+/* ========== ІМПОРТ ШРИФТІВ ========== */
+
+/* Google Fonts: Cormorant Garamond (Headings) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+/* Google Fonts: Inter (Body) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ========== БАЗОВІ СТИЛІ ========== */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* ========== ЗАГОЛОВКИ ========== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+h1 {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+}
+
+h3 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+h4 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+h5 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+}
+
+h6 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Hero заголовок (спеціальний клас) */
+.heading-hero {
+  font-size: var(--font-size-hero);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+/* ========== ПАРАГРАФИ ========== */
+
+p {
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+}
+
+/* Великий параграф (intro text) */
+.text-lead {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+}
+
+/* Малий текст */
+.text-small {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+/* Дуже малий текст (caption) */
+.text-caption {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--text-muted);
+}
+
+/* ========== СПИСКИ ========== */
+
+ul, ol {
+  margin: 0;
+  padding-left: var(--spacing-lg);
+}
+
+li {
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+/* Список без маркерів */
+.list-unstyled {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* ========== UTILITY КЛАСИ ДЛЯ ТЕКСТУ ========== */
+
+/* Вага */
+.font-light {
+  font-weight: var(--font-weight-light);
+}
+
+.font-normal {
+  font-weight: var(--font-weight-normal);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.font-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Вирівнювання */
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Колір тексту */
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-white {
+  color: var(--text-on-dark);
+}
+
+.text-accent {
+  color: var(--accent-primary);
+}
+
+/* Transform */
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+/* Truncate */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Line clamp (обрізання тексту після N рядків) */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ========== LINKS ========== */
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Link без стилізації */
+.link-unstyled {
+  color: inherit;
+  text-decoration: none;
+}
+
+.link-unstyled:hover {
+  color: inherit;
+}
+
+/* ========== BLOCKQUOTE ========== */
+
+blockquote {
+  margin: var(--spacing-lg) 0;
+  padding-left: var(--spacing-lg);
+  border-left: 4px solid var(--accent-primary);
+  font-size: var(--font-size-lg);
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+blockquote cite {
+  display: block;
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-base);
+  font-style: normal;
+  color: var(--text-muted);
+}
+
+/* ========== CODE ========== */
+
+code {
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 0.875em;
+  padding: 2px 6px;
+  background-color: var(--bg-tertiary);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-primary);
+}
+
+pre {
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-md);
+  background-color: var(--bg-tertiary);
+  border-radius: var(--border-radius-md);
+  overflow-x: auto;
+  line-height: var(--line-height-relaxed);
+}
+
+pre code {
+  padding: 0;
+  background: none;
+}
+
+/* ========== RESPONSIVE TYPOGRAPHY ========== */
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  body {
+    font-size: 15px; /* Трохи менше на мобільних */
+  }
+  
+  .text-lead {
+    font-size: var(--font-size-base);
+  }
+  
+  blockquote {
+    font-size: var(--font-size-base);
+    padding-left: var(--spacing-md);
+  }
+}
+
+/* Large screens - збільшуємо base font */
+@media (min-width: 1280px) {
+  body {
+    font-size: 17px;
+  }
+}

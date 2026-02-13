@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
 import { rooms } from '../../config';
 import './Rooms.css';
 
@@ -9,124 +8,88 @@ const Rooms = () => {
 
   return (
     <section id="rooms" className="section rooms-section">
-      <Container>
-        {/* Заголовок секції */}
-        <h2 className="section-title">Наші номери</h2>
-        <p className="section-subtitle">
+      <div className="container">
+        <h2 className="section-title" data-animate="fade-in">Наші номери</h2>
+        <p className="section-subtitle" data-animate="fade-in">
           Оберіть ідеальний номер для вашого комфортного відпочинку
         </p>
-        
-        {/* Картки номерів */}
-        <Row className="g-4 mb-4">
-          {displayedRooms.map((room, index) => (
-            <Col md={6} lg={4} key={room.id} className="room-col">
-              <Card className="h-100 room-card border-0 shadow">
-                {/* Зображення номера */}
-                <div className="room-image-wrapper">
-                  <Card.Img 
-                    variant="top" 
-                    src={room.image} 
-                    alt={room.name}
-                    className="room-image"
-                  />
-                  {room.pricePerNight && (
-                    <div className="price-badge">
-                      {room.pricePerNight}
-                    </div>
+
+        <div className="rooms-grid">
+          {displayedRooms.map((room) => (
+            <div
+              className="room-card"
+              key={room.id}
+              data-animate="slide-in-bottom"
+              style={{ transitionDelay: `${displayedRooms.indexOf(room) * 100}ms` }}
+            >
+              <div className="room-card__image-wrap">
+                <img
+                  src={room.image}
+                  alt={room.name}
+                  className="room-card__image"
+                  loading="lazy"
+                />
+                {room.rating && (
+                  <span className="room-card__rating">★ {room.rating}</span>
+                )}
+              </div>
+
+              <div className="room-card__body">
+                <h3 className="room-card__title">{room.name}</h3>
+
+                <div className="room-card__meta">
+                  {room.area && <span className="room-card__meta-item">📏 {room.area}</span>}
+                  {room.guests && <span className="room-card__meta-item">👥 {room.guests} гостя</span>}
+                </div>
+
+                <p className="room-card__desc">{room.description}</p>
+
+                <div className="room-card__features">
+                  {room.features.slice(0, 3).map((feature, idx) => (
+                    <span key={idx} className="room-card__tag">{feature}</span>
+                  ))}
+                  {room.features.length > 3 && (
+                    <span className="room-card__tag room-card__tag--more">
+                      +{room.features.length - 3}
+                    </span>
                   )}
                 </div>
-                
-                {/* Інформація про номер */}
-                <Card.Body className="d-flex flex-column">
-                  <Card.Title className="h5 mb-2">
-                    {room.name}
-                  </Card.Title>
-                  
-                  <p className="room-price mb-3">
-                    від <span className="price-amount">{room.price} {room.currency}</span>/ніч
-                  </p>
-                  
-                  <Card.Text className="text-muted mb-3 room-description">
-                    {room.description}
-                  </Card.Text>
-                  
-                  {/* Основна інформація */}
-                  {(room.area || room.guests) && (
-                    <div className="room-meta mb-3">
-                      {room.area && (
-                        <span className="meta-item">
-                          <i className="bi bi-rulers"></i> {room.area}
-                        </span>
-                      )}
-                      {room.guests && (
-                        <span className="meta-item">
-                          <i className="bi bi-people"></i> {room.guests} гостя
-                        </span>
-                      )}
-                    </div>
-                  )}
-                  
-                  {/* Особливості номера */}
-                  <div className="room-features mb-3">
-                    {room.features.slice(0, 3).map((feature, idx) => (
-                      <Badge 
-                        key={idx} 
-                        bg="light" 
-                        text="dark" 
-                        className="me-2 mb-2"
-                      >
-                        {feature}
-                      </Badge>
-                    ))}
-                    {room.features.length > 3 && (
-                      <Badge bg="primary" className="me-2 mb-2">
-                        +{room.features.length - 3}
-                      </Badge>
-                    )}
+
+                <div className="room-card__footer">
+                  <div className="room-card__price">
+                    <span className="room-card__price-from">від</span>
+                    <span className="room-card__price-amount">{room.price} {room.currency}</span>
+                    <span className="room-card__price-period">/ ніч</span>
                   </div>
-                  
-                  <Button variant="outline-primary" className="mt-auto w-100">
-                    Детальніше
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
+                  {room.pricePerNight && (
+                    <span className="room-card__price-euro">{room.pricePerNight}</span>
+                  )}
+                </div>
+              </div>
+            </div>
           ))}
-        </Row>
-        
-        {/* Кнопка "Показати більше" */}
-        {!showAll && rooms.length > 3 && (
-          <div className="text-center">
-            <Button 
-              variant="primary" 
-              size="lg"
-              className="show-more-btn"
-              onClick={() => setShowAll(true)}
-            >
-              <span>Показати всі номери ({rooms.length})</span>
-              <i className="bi bi-arrow-down ms-2"></i>
-            </Button>
+        </div>
+
+        {rooms.length > 3 && (
+          <div className="rooms-toggle">
+            {!showAll ? (
+              <button className="btn btn-outline btn-lg" onClick={() => setShowAll(true)}>
+                Показати всі номери ({rooms.length})
+              </button>
+            ) : (
+              <button
+                className="btn btn-outline"
+                onClick={() => {
+                  setShowAll(false);
+                  document.getElementById('rooms')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Згорнути
+              </button>
+            )}
           </div>
         )}
-        
-        {/* Кнопка "Згорнути" */}
-        {showAll && (
-          <div className="text-center">
-            <Button 
-              variant="outline-primary" 
-              size="lg"
-              className="show-less-btn"
-              onClick={() => {
-                setShowAll(false);
-                document.getElementById('rooms').scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              <span>Згорнути</span>
-              <i className="bi bi-arrow-up ms-2"></i>
-            </Button>
-          </div>
-        )}
-      </Container>
+      </div>
     </section>
   );
 };

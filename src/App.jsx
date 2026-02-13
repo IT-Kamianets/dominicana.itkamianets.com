@@ -1,31 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './pages/HomePage';
-import RoomsPage from './pages/RoomsPage';
 import Footer from './components/Footer/Footer';
+import BackToTop from './components/BackToTop/BackToTop';
+import { initScrollAnimations } from './hooks/useScrollAnimation';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-
-  const renderPage = () => {
-    switch(currentPage) {
-      case 'rooms':
-        return <RoomsPage />;
-      default:
-        return <HomePage />;
-    }
-  };
+  useEffect(() => {
+    const cleanup = initScrollAnimations();
+    return cleanup;
+  }, []);
 
   return (
     <div className="App">
-      {/* Навігація */}
-      <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      
-      {/* Поточна сторінка */}
-      {renderPage()}
-      
-      {/* Футер */}
+      <Navigation />
+      <HomePage />
       <Footer />
+      <BackToTop />
     </div>
   );
 }

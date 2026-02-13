@@ -1,108 +1,91 @@
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
 import { hotelConfig, hotelFeatures } from '../../config';
 import Icon from '../Icon';
 import './About.css';
 
 const About = () => {
   return (
-    <section id="about" className="section about-section bg-light">
-      <Container>
-        {/* Заголовок секції */}
-        <h2 className="section-title">Про наш готель</h2>
-        <p className="section-subtitle">
-          Відкрийте для себе ідеальне поєднання комфорту, розкоші та гостинності у серці історичного міста
+    <section id="about" className="section about-section">
+      <div className="container">
+        <h2 className="section-title" data-animate="fade-in">Про наш готель</h2>
+        <p className="section-subtitle" data-animate="fade-in">
+          Відкрийте для себе ідеальне поєднання комфорту та гостинності у серці історичного міста
         </p>
-        
-        {/* Основний опис */}
-        <Row className="mb-5">
-          <Col lg={10} className="mx-auto">
-            <div className="about-content">
-              <p className="lead text-center mb-4">
-                {hotelConfig.description}
-              </p>
-              
-              <Row className="mt-5">
-                <Col md={6} className="mb-4">
-                  <div className="info-box">
-                    <h4 className="info-title">
-                      <Icon name="map-pin" size={24} className="me-2 text-primary" />
-                      Розташування
-                    </h4>
-                    <p className="text-muted">
-                      Готель розташований на відстані 800 м від Кам'янець-Подільської фортеці, 
-                      у самому центрі міста. Зручне місцерозташування дозволяє з легкістю дістатися 
-                      визначних пам'яток архітектури. До Ратуші всього 200 м.
-                    </p>
-                  </div>
-                </Col>
-                
-                <Col md={6} className="mb-4">
-                  <div className="info-box">
-                    <h4 className="info-title">
-                      <Icon name="briefcase" size={24} className="me-2 text-primary" />
-                      Зручності
-                    </h4>
-                    <p className="text-muted">
-                      10 добре обладнаних номерів, розрахованих на проживання до 25 гостей одночасно. 
-                      Всі номери мають балкони з видом на місто, кондиціонери, плазмові телевізори 
-                      та власні ванні кімнати.
-                    </p>
-                  </div>
-                </Col>
-                
-                <Col md={6} className="mb-4">
-                  <div className="info-box">
-                    <h4 className="info-title">
-                      <Icon name="restaurant" size={24} className="me-2 text-primary" />
-                      Харчування
-                    </h4>
-                    <p className="text-muted">
-                      Ресторан на території пропонує різноманітні страви української та міжнародної 
-                      кухні. Гості високо оцінюють якість страв та обслуговування.
-                    </p>
-                  </div>
-                </Col>
-                
-                <Col md={6} className="mb-4">
-                  <div className="info-box">
-                    <h4 className="info-title">
-                      <Icon name="power" size={24} className="me-2 text-primary" />
-                      Безпека
-                    </h4>
-                    <p className="text-muted">
-                      На території готелю встановлено генератор, що забезпечує безперебійне 
-                      електропостачання, опалення та водопостачання навіть під час відключень.
-                    </p>
-                  </div>
-                </Col>
-              </Row>
+
+        {/* Опис з фото */}
+        <div className="about-intro" data-animate="fade-in">
+          <div className="about-intro__photo">
+            <img
+              src="https://udominicanakamianetspodilskyi.ua-hotel.com/data/Photos/OriginalPhoto/14989/1498989/1498989439/photo-u-dominicana-kamianets-podilskyi-6.JPEG"
+              alt="Готель У Домінікана"
+              loading="lazy"
+            />
+          </div>
+          <div className="about-intro__text">
+            <p className="about-lead">
+              {hotelConfig.description}
+            </p>
+            <div className="about-highlights">
+              <div className="about-highlight">
+                <span className="about-highlight__number">10</span>
+                <span className="about-highlight__label">номерів</span>
+              </div>
+              <div className="about-highlight">
+                <span className="about-highlight__number">9.6</span>
+                <span className="about-highlight__label">рейтинг</span>
+              </div>
+              <div className="about-highlight">
+                <span className="about-highlight__number">712</span>
+                <span className="about-highlight__label">відгуків</span>
+              </div>
             </div>
-          </Col>
-        </Row>
-        
-        {/* Переваги готелю */}
-        <h3 className="text-center mb-4 mt-5">Чому обирають нас</h3>
-        <Row className="g-4">
-          {hotelFeatures.map((feature) => (
-            <Col md={6} lg={3} key={feature.id}>
-              <Card className="h-100 border-0 shadow-sm feature-card text-center">
-                <Card.Body>
-                  <div className="feature-icon mb-3">
-                    <Icon name={feature.icon} size={40} />
-                  </div>
-                  <Card.Title className="h5">
-                    {feature.title}
-                  </Card.Title>
-                  <Card.Text className="text-muted">
-                    {feature.description}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
+          </div>
+        </div>
+
+        {/* Інфо блоки */}
+        <div className="about-info-grid">
+          {[
+            { icon: 'map-pin', title: 'Розташування', text: "На відстані 800 м від фортеці, у самому центрі міста. До Ратуші всього 200 м." },
+            { icon: 'briefcase', title: 'Зручності', text: 'Балкони з видом на місто, кондиціонери, плазмові телевізори та власні ванні кімнати.' },
+            { icon: 'restaurant', title: 'Харчування', text: 'Ресторан з українською та міжнародною кухнею. Високі оцінки від гостей.' },
+            { icon: 'power', title: 'Безпека', text: 'Власний генератор — безперебійне електропостачання, опалення та вода.' },
+          ].map((item, i) => (
+            <div
+              className="about-info-box"
+              key={i}
+              data-animate="slide-in-bottom"
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              <div className="about-info-icon">
+                <Icon name={item.icon} size={22} />
+              </div>
+              <div>
+                <h4 className="about-info-title">{item.title}</h4>
+                <p className="about-info-text">{item.text}</p>
+              </div>
+            </div>
           ))}
-        </Row>
-      </Container>
+        </div>
+
+        {/* Переваги */}
+        <h3 className="about-features-title" data-animate="fade-in">Чому обирають нас</h3>
+        <div className="about-features-grid">
+          {hotelFeatures.map((feature, i) => (
+            <div
+              className="about-feature-card"
+              key={feature.id}
+              data-animate="scale-up"
+              style={{ transitionDelay: `${i * 100}ms` }}
+            >
+              <div className="about-feature-icon">
+                <Icon name={feature.icon} size={32} />
+              </div>
+              <h5 className="about-feature-name">{feature.title}</h5>
+              <p className="about-feature-desc">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

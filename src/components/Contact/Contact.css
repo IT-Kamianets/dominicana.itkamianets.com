@@ -1,56 +1,87 @@
-/* СТИЛІ CONTACT СЕКЦІЇ */
+/* ============================================
+   CONTACT SECTION
+   Фон: primary (білий)
+   ============================================ */
 
 .contact-section {
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
 }
 
-/* Контейнер форми */
-.booking-form-container {
-  background-color: #f8f9fa;
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-/* Стилі полів форми */
-.booking-form-container .form-label {
-  font-weight: 600;
-  color: var(--dark-color);
-  margin-bottom: 0.5rem;
-}
-
-.booking-form-container .form-control,
-.booking-form-container .form-select {
-  padding: 0.75rem;
-  border: 2px solid #dee2e6;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.booking-form-container .form-control:focus,
-.booking-form-container .form-select:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.25rem rgba(74, 144, 226, 0.15);
-}
-
-/* Кнопка відправки */
-.booking-form-container .btn-primary {
-  padding: 1rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  margin-top: 1rem;
+.contact-form-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Alert */
-.alert {
-  border-radius: 8px;
-  margin-bottom: 2rem;
+.contact-alert {
+  background-color: #e8f5e9;
+  color: var(--success);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  border: 1px solid rgba(74, 124, 89, 0.2);
 }
 
-/* Адаптивність */
-@media (max-width: 768px) {
-  .booking-form-container {
-    padding: 1.5rem;
+/* Form grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group--full {
+  grid-column: 1 / -1;
+}
+
+/* Form */
+.form-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  border: var(--border-width-thin) solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  transition: border-color var(--transition-fast);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+  border-color: var(--accent-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.1);
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 767px) {
+  .contact-form-wrap {
+    padding: var(--spacing-md);
   }
 }
