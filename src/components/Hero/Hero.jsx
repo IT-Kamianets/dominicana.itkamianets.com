@@ -4,38 +4,69 @@ import './Hero.css';
 
 const Hero = () => {
   return (
-    <section id="home" className="hero-section">
+    <section id="home" className="hero" aria-label={`Готель ${hotelConfig.hotelName}`}>
+
+      {/* Background */}
       <div
-        className="hero-background"
+        className="hero__bg"
         style={{
           backgroundImage:
             'url(https://udominicanakamianetspodilskyi.ua-hotel.com/data/Photos/OriginalPhoto/14217/1421771/1421771208/photo-u-dominicana-kamianets-podilskyi-1=w1920-h1080.JPEG)',
         }}
-      >
-        <div className="hero-overlay"></div>
-      </div>
+        role="img"
+        aria-label="Кам'янець-Подільський"
+      />
 
-      <div className="hero-content container">
-        <h1 className="hero-title hero-title-animation">
-          {hotelConfig.hotelName}
-        </h1>
-        <p className="hero-subtitle hero-subtitle-animation">
+      {/* Radial vignette overlay */}
+      <div className="hero__overlay" />
+
+      {/* Centered title card */}
+      <div className="hero__content">
+
+        <p className="hero__location hero__anim hero__anim--1">
+          <span className="hero__location-line" />
+          Кам'янець-Подільський
+          <span className="hero__location-line" />
+        </p>
+
+        <div className="hero__title-wrap hero__anim hero__anim--2">
+          <div className="hero__rule" aria-hidden="true" />
+          <h1 className="hero__title">{hotelConfig.hotelName}</h1>
+          <div className="hero__rule" aria-hidden="true" />
+        </div>
+
+        <p className="hero__tagline hero__anim hero__anim--3">
           {hotelConfig.tagline}
         </p>
-        <div className="hero-buttons hero-button-animation">
-          <a href="#rooms" className="btn btn-hero">
-            Переглянути номери
-          </a>
+
+        <div className="hero__ctas hero__anim hero__anim--4">
+          <a href="#contact" className="btn-hero">Забронювати номер</a>
+          <a href="#rooms" className="hero__link">Переглянути номери ↓</a>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="hero-scroll-indicator hero-button-animation">
-        <span className="hero-scroll-indicator__text">Скролити</span>
-        <div className="hero-scroll-indicator__arrow">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
+      {/* Floating stats strip - overlaps next section */}
+      <div className="hero__strip hero__anim hero__anim--5" aria-label="Рейтинги готелю">
+        <div className="hero__strip-inner">
+          <div className="hero__strip-item">
+            <strong>9.6</strong>
+            <span>Booking.com</span>
+          </div>
+          <div className="hero__strip-sep" aria-hidden="true" />
+          <div className="hero__strip-item">
+            <strong>712</strong>
+            <span>відгуків</span>
+          </div>
+          <div className="hero__strip-sep" aria-hidden="true" />
+          <div className="hero__strip-item">
+            <strong>9.9</strong>
+            <span>розташування</span>
+          </div>
+          <div className="hero__strip-sep" aria-hidden="true" />
+          <div className="hero__strip-item">
+            <strong>10</strong>
+            <span>номерів</span>
+          </div>
         </div>
       </div>
     </section>

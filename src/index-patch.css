@@ -1,0 +1,47 @@
+/* ============================================
+   ДОПОВНЕННЯ до index.css: Y Dominikana
+   Додає section-eyebrow, не ламає існуючий код
+   ============================================ */
+
+/* IMPORTANT: Це файл-патч.
+   Скопіюй його ВМІСТ в кінець свого src/index.css
+   АБО замінь весь файл якщо хочеш чистоти.
+   Нічого з існуючих стилів (.section, .section-title,
+   .section-subtitle, .btn, form elements) не змінюється. */
+
+/* ─── Cinzel font для Hero та Nav brand ─── */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
+
+/* ─── Eyebrow label — підпис над заголовком секції ─── */
+
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-primary, #8b6f47);
+  margin-bottom: var(--spacing-sm, 1rem);
+}
+
+/* ─── section-header обгортка ─── */
+/* Використовується тільки в Gallery та Contact.
+   Не впливає на інші секції що не мають цього класу. */
+
+.section-header {
+  margin-bottom: var(--spacing-2xl, 4rem);
+}
+
+.section-header.text-center {
+  text-align: center;
+}
+
+/* ─── Hero strip відступ для наступної секції ─── */
+/* Компенсує floating strip (-28px) щоб наступна секція
+   не перекривала strip */
+
+#about,
+#home + section {
+  padding-top: calc(var(--section-padding-y) + 40px);
+}

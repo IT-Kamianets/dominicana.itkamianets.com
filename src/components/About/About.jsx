@@ -1,90 +1,68 @@
 import React from 'react';
-import { hotelConfig, hotelFeatures } from '../../config';
+import { hotelConfig } from '../../config';
 import Icon from '../Icon';
 import './About.css';
 import hotelImage from '../../assets/images/hotel.png';
+
+const FACTS = [
+  { icon: 'map-pin',    text: '800 м до фортеці. До Ратуші — 200 м.' },
+  { icon: 'restaurant', text: 'Ресторан з українською та міжнародною кухнею.' },
+  { icon: 'power',      text: 'Власний генератор — світло, тепло та вода завжди.' },
+  { icon: 'parking',    text: 'Безкоштовна парковка та зарядка для електромобілів.' },
+];
 
 const About = () => {
   return (
     <section id="about" className="section about-section">
       <div className="container">
-        <h2 className="section-title" data-animate="fade-in">Про наш готель</h2>
-        <p className="section-subtitle" data-animate="fade-in">
-          Відкрийте для себе ідеальне поєднання комфорту та гостинності у серці історичного міста
-        </p>
+        <div className="about__layout">
 
-        {/* Опис з одним фото */}
-        <div className="about-intro">
-          <div className="about-intro__photo" data-animate="slide-in-left">
-            <img
-  src={hotelImage}
-  alt="Готель У Домінікана"
-  loading="lazy"
-/>
+          {/* ── Left: photo ── */}
+          <div className="about__photo-col">
+            <div className="about__photo-frame">
+              <img
+                src={hotelImage}
+                alt="Готель У Домінікана, Кам'янець-Подільський"
+                loading="lazy"
+              />
+              <div className="about__badge">
+                <span className="about__badge-score">9.6</span>
+                <span className="about__badge-label">Booking.com</span>
+                <span className="about__badge-sub">712 відгуків</span>
+              </div>
+            </div>
           </div>
-          <div className="about-intro__text" data-animate="fade-in">
-            <p className="about-lead">
+
+          {/* ── Right: content ── */}
+          <div className="about__content">
+
+            <span className="section-eyebrow">Про готель</span>
+
+            <h2 className="about__title">
+              Зупинка в<br />
+              <em>серці міста</em>
+            </h2>
+
+            <p className="about__desc">
               {hotelConfig.description}
             </p>
-            <div className="about-highlights">
-              <div className="about-highlight">
-                <span className="about-highlight__number">10</span>
-                <span className="about-highlight__label">номерів</span>
-              </div>
-              <div className="about-highlight">
-                <span className="about-highlight__number">9.6</span>
-                <span className="about-highlight__label">рейтинг</span>
-              </div>
-              <div className="about-highlight">
-                <span className="about-highlight__number">712</span>
-                <span className="about-highlight__label">відгуків</span>
-              </div>
-            </div>
+
+            <ul className="about__facts">
+              {FACTS.map((f, i) => (
+                <li key={i} className="about__fact">
+                  <span className="about__fact-icon">
+                    <Icon name={f.icon} size={16} />
+                  </span>
+                  <span>{f.text}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a href="#rooms" className="btn btn-primary about__cta">
+              Переглянути номери
+            </a>
           </div>
-        </div>
 
-        {/* Інфо блоки */}
-        <div className="about-info-grid">
-          {[
-            { icon: 'map-pin', title: 'Розташування', text: "На відстані 800 м від фортеці, у самому центрі міста. До Ратуші всього 200 м." },
-            { icon: 'briefcase', title: 'Зручності', text: 'Балкони з видом на місто, кондиціонери, плазмові телевізори та власні ванні кімнати.' },
-            { icon: 'restaurant', title: 'Харчування', text: 'Ресторан з українською та міжнародною кухнею. Високі оцінки від гостей.' },
-            { icon: 'power', title: 'Безпека', text: 'Власний генератор — безперебійне електропостачання, опалення та вода.' },
-          ].map((item, i) => (
-            <div
-              className="about-info-box"
-              key={i}
-              data-animate="slide-in-bottom"
-              style={{ transitionDelay: `${i * 80}ms` }}
-            >
-              <div className="about-info-icon">
-                <Icon name={item.icon} size={22} />
-              </div>
-              <div>
-                <h4 className="about-info-title">{item.title}</h4>
-                <p className="about-info-text">{item.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Переваги — каскадний hover */}
-        <h3 className="about-features-title" data-animate="fade-in">Чому обирають нас</h3>
-        <div className="about-features-grid cascade-hover">
-          {hotelFeatures.map((feature, i) => (
-            <div
-              className="about-feature-card"
-              key={feature.id}
-              data-animate="scale-up"
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
-              <div className="about-feature-icon">
-                <Icon name={feature.icon} size={32} />
-              </div>
-              <h5 className="about-feature-name">{feature.title}</h5>
-              <p className="about-feature-desc">{feature.description}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>

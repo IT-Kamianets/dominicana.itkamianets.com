@@ -1,100 +1,236 @@
 /* ============================================
-   LOCATION SECTION
-   Фон: tertiary (хатікі)
+   LOCATION — Styled map + full contact info
    ============================================ */
 
 .location-section {
-  background-color: var(--bg-tertiary);
+  background-color: var(--bg-tertiary, #f5f1e8);
 }
 
-.location-grid {
+.location__header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* ─── Two-column grid ─── */
+
+.location__grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-md);
+  grid-template-columns: 320px 1fr;
+  gap: var(--spacing-lg);
+  align-items: stretch;
 }
 
-@media (min-width: 1024px) {
-  .location-grid {
-    grid-template-columns: 1fr 2fr;
-  }
-}
+/* ─── Info panel ─── */
 
-/* Info panel */
-.location-info {
-  background-color: var(--bg-primary);
+.location__info {
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-color, #e5dfd3);
+  border-radius: var(--border-radius-xl, 16px);
   padding: var(--spacing-lg);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-sm);
-  height: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
 }
 
-.location-info__item {
+/* Contact items */
+.location__contact-item {
   display: flex;
-  gap: var(--spacing-sm);
   align-items: flex-start;
+  gap: 0.75rem;
 }
 
-.location-info__icon {
+.location__contact-icon {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-tertiary);
-  border-radius: var(--border-radius-md);
-  color: var(--accent-primary);
+  background: var(--bg-tertiary, #f5f1e8);
+  border-radius: var(--border-radius-md, 8px);
+  color: var(--accent-primary, #8b6f47);
 }
 
-.location-info__label {
-  font-family: var(--font-heading);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
+.location__contact-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted, #8b8276);
   margin-bottom: 2px;
 }
 
-.location-info__value {
-  font-size: var(--font-size-sm);
-  color: var(--text-muted);
-  line-height: var(--line-height-relaxed);
+.location__contact-value {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-secondary, #4a3f35);
+  line-height: 1.5;
 }
 
-.location-info__link {
-  font-size: var(--font-size-sm);
-  color: var(--accent-primary);
+.location__contact-link {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--accent-primary, #8b6f47);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: color 0.18s ease;
 }
 
-.location-info__link:hover {
-  color: var(--accent-hover);
+.location__contact-link:hover {
+  color: var(--accent-hover, #a68a64);
+  text-decoration: underline;
 }
 
-/* Map */
-.location-map {
-  border-radius: var(--border-radius-lg);
+/* Divider */
+.location__divider {
+  height: 1px;
+  background: var(--border-color, #e5dfd3);
+}
+
+/* Landmarks */
+.location__landmarks {
+  flex: 1;
+}
+
+.location__landmarks-title {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted, #8b8276);
+  margin-bottom: 0.6rem;
+}
+
+.location__landmarks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.location__landmarks li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-secondary, #4a3f35);
+}
+
+.location__landmark-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-primary, #8b6f47);
+  flex-shrink: 0;
+}
+
+.location__cta {
+  text-align: center;
+}
+
+/* ─── Map ─── */
+
+.location__map-wrap {
+  position: relative;
+  border-radius: var(--border-radius-xl, 16px);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color, #e5dfd3);
+  min-height: 360px;   /* ← зменшено з 480px */
+}
+
+.location__map-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  min-height: 420px;
-}
-
-.location-map iframe {
   display: block;
+
+  /* Warm colour grade */
+  filter:
+    sepia(30%)
+    saturate(85%)
+    hue-rotate(8deg)
+    brightness(0.98)
+    contrast(1.04);
+  transition: filter 0.4s ease;
 }
 
-/* ========== RESPONSIVE ========== */
+.location__map-wrap:hover iframe {
+  filter:
+    sepia(12%)
+    saturate(92%)
+    brightness(1)
+    contrast(1.02);
+}
 
-@media (max-width: 991px) {
-  .location-info {
-    margin-bottom: var(--spacing-md);
+/* Thin warm vignette over the map */
+.location__map-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(245, 241, 232, 0.18) 0%,
+      transparent 15%,
+      transparent 85%,
+      rgba(245, 241, 232, 0.14) 100%
+    );
+}
+
+/* Custom pin bubble */
+.location__map-pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.location__pin-bubble {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.35rem 0.75rem;
+  background: var(--accent-primary, #8b6f47);
+  color: #fff;
+  border-radius: var(--border-radius-full, 9999px);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(139, 111, 71, 0.38);
+}
+
+.location__pin-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--accent-primary, #8b6f47);
+  border-bottom: none;
+}
+
+/* ─── Responsive ─── */
+
+@media (max-width: 900px) {
+  .location__grid {
+    grid-template-columns: 1fr;
   }
 
-  .location-map {
+  .location__map-wrap {
     min-height: 300px;
+  }
+}
+
+@media (max-width: 500px) {
+  .location__map-wrap {
+    min-height: 240px;
   }
 }
