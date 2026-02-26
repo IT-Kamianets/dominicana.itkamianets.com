@@ -18,15 +18,7 @@ export default defineConfig({
         // Іменування для довготривалого кешування
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: ({ name }) => {
-          if (/\.(png|jpe?g|webp|svg|gif|ico)$/.test(name)) {
-            return 'assets/img/[name]-[hash][extname]';
-          }
-          if (/\.css$/.test(name)) {
-            return 'assets/css/[name]-[hash][extname]';
-          }
-          return 'assets/[name]-[hash][extname]';
-        },
+        assetFileNames: 'assets/[name]-[hash][extname]',
       },
     },
 
