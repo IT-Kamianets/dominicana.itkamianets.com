@@ -17,42 +17,36 @@
 .gallery__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 230px;
+  grid-auto-rows: 280px;
   gap: 10px;
 }
 
 /*
-  Layout (4 cols):
+  Layout (4 cols × 280px рядки — більше вертикального простору):
 
-  Ряд 1: [wide 1–2] [sq 3] [sq 4]
-  Ряд 2: [sq 1] [sq 2] [wide 3–4]
-  Ряд 3: [sq 1] [wide 2–3] [sq 4]
-  Ряд 4: [wide 1–2] [wide 3–4]
+  Ряд 1: [sq] [sq] [tall ×2] [sq]
+  Ряд 2: [sq] [sq]            [sq]
+  Ряд 3: [sq] [tall ×2] [sq] [sq]
+  Ряд 4: [sq]            [sq] [sq]
 
-  Кожна клітинка явно прив'язана — ніякого auto-flow сюрпризу.
+  Використовуємо row-span замість col-span — фото не обрізаються горизонтально.
 */
 
-/* Ряд 1 */
-.gallery__cell:nth-child(1)  { grid-column: 1 / 3; } /* wide */
-.gallery__cell:nth-child(2)  { grid-column: 3 / 4; } /* sq   */
-.gallery__cell:nth-child(3)  { grid-column: 4 / 5; } /* sq   */
+/* Ряд 1–2: фото 3 займає 2 рядки */
+.gallery__cell:nth-child(1) { grid-column: 1 / 2; grid-row: 1; }
+.gallery__cell:nth-child(2) { grid-column: 2 / 3; grid-row: 1; }
+.gallery__cell:nth-child(3) { grid-column: 3 / 4; grid-row: 1 / 3; } /* tall */
+.gallery__cell:nth-child(4) { grid-column: 4 / 5; grid-row: 1; }
+.gallery__cell:nth-child(5) { grid-column: 1 / 2; grid-row: 2; }
+.gallery__cell:nth-child(6) { grid-column: 2 / 3; grid-row: 2; }
+.gallery__cell:nth-child(7) { grid-column: 4 / 5; grid-row: 2; }
 
-/* Ряд 2 */
-.gallery__cell:nth-child(4)  { grid-column: 1 / 2; } /* sq   */
-.gallery__cell:nth-child(5)  { grid-column: 2 / 3; } /* sq   */
-.gallery__cell:nth-child(6)  { grid-column: 3 / 5; } /* wide */
-
-/* Ряд 3 */
-.gallery__cell:nth-child(7)  { grid-column: 1 / 2; } /* sq   */
-.gallery__cell:nth-child(8)  { grid-column: 2 / 4; } /* wide */
-.gallery__cell:nth-child(9)  { grid-column: 4 / 5; } /* sq   */
-
-/* Ряд 4 */
-.gallery__cell:nth-child(10) { grid-column: 1 / 3; } /* wide */
-.gallery__cell:nth-child(11) { grid-column: 3 / 5; } /* wide */
-
-/* Ряд 5 — 12-те фото центрується */
-.gallery__cell:nth-child(12) { grid-column: 2 / 4; }
+/* Ряд 3–4: фото 9 займає 2 рядки */
+.gallery__cell:nth-child(8)  { grid-column: 1 / 2; grid-row: 3; }
+.gallery__cell:nth-child(9)  { grid-column: 2 / 3; grid-row: 3 / 5; } /* tall */
+.gallery__cell:nth-child(10) { grid-column: 3 / 4; grid-row: 3; }
+.gallery__cell:nth-child(11) { grid-column: 4 / 5; grid-row: 3; }
+.gallery__cell:nth-child(12) { grid-column: 1 / 2; grid-row: 4; }
 
 /* ─── Cell ─── */
 
@@ -216,23 +210,24 @@
 @media (max-width: 860px) {
   .gallery__grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 190px;
+    grid-auto-rows: 220px;
   }
 
-  /* Скидаємо всі явні позиції — браузер авто-розміщує в 2 колонки */
+  /* Скидаємо всі явні позиції */
   .gallery__cell:nth-child(n) {
-    grid-column: span 1;
+    grid-column: unset;
+    grid-row: unset;
   }
 
-  /* Кожен третій — wide на 2 колонки */
-  .gallery__cell:nth-child(3n+1) {
-    grid-column: 1 / 3;
+  /* Кожне 3-тє фото — tall (2 рядки) */
+  .gallery__cell:nth-child(3n) {
+    grid-row: span 2;
   }
 }
 
 @media (max-width: 480px) {
   .gallery__grid {
-    grid-auto-rows: 150px;
+    grid-auto-rows: 180px;
     gap: 7px;
   }
 

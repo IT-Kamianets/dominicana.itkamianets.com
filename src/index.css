@@ -207,4 +207,22 @@ select:focus {
     font-size: var(--font-size-base);
     margin-bottom: var(--spacing-xl);
   }
+
+  /* Кнопки — мінімальна висота 44px для зручного торкання */
+  .btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .container {
+    padding-inline: var(--spacing-sm);
+  }
 }

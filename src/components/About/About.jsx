@@ -23,7 +23,8 @@ const About = () => {
               <img
                 src={hotelImage}
                 alt="Готель У Домінікана, Кам'янець-Подільський"
-                loading="lazy"
+                loading="eager"
+                fetchpriority="high"
               />
               <div className="about__badge">
                 <span className="about__badge-score">9.6</span>

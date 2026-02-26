@@ -3,3 +3,8 @@ node_modules/
 dist/
 npm-debug.log
 .DS_Store
+
+# Claude
+.claude/
+.claudeignore
+CLAUDE.md

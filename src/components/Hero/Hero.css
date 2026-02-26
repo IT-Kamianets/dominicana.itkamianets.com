@@ -3,8 +3,7 @@
    Cinzel · Centered title-card · Floating strip
    ============================================ */
 
-/* Cinzel — Roman stone-carved capitals */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
+/* Cinzel завантажується через <link> в index.html */
 
 /* ─── Section ─── */
 
@@ -261,24 +260,79 @@
 /* ─── Responsive ─── */
 
 @media (max-width: 600px) {
+  .hero {
+    min-height: 100svh;
+    padding-bottom: 72px; /* більше місця для strip */
+  }
+
   .hero__title {
-    letter-spacing: 0.1em;
+    font-size: clamp(2.2rem, 12vw, 3.2rem);
+    letter-spacing: 0.08em;
+  }
+
+  .hero__tagline {
+    font-size: 1rem;
+    margin-bottom: 1.8rem;
   }
 
   .hero__rule {
     max-width: 90vw;
   }
 
+  .hero__ctas {
+    gap: 0.75rem;
+  }
+
+  .btn-hero {
+    padding: 0.75rem 2rem;
+    font-size: 0.68rem;
+  }
+
+  /* Strip — 2×2 grid замість 1 рядка */
   .hero__strip {
-    bottom: -24px;
+    bottom: -36px;
+    width: calc(100% - 2rem);
+  }
+
+  .hero__strip-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Ховаємо вертикальні роздільники між колонками */
+  .hero__strip-sep {
+    display: none;
+  }
+
+  /* Горизонтальний роздільник між рядками */
+  .hero__strip-item:nth-child(1),
+  .hero__strip-item:nth-child(3) {
+    border-right: 1px solid var(--border-color, #e5dfd3);
+  }
+
+  .hero__strip-item:nth-child(3),
+  .hero__strip-item:nth-child(4) {
+    border-top: 1px solid var(--border-color, #e5dfd3);
+  }
+
+  /* Четвертий елемент — зірки/сепаратор */
+  .hero__strip-item:nth-child(7) {
+    display: none;
   }
 
   .hero__strip-item strong {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
 
   .hero__strip-item span {
-    font-size: 0.55rem;
+    font-size: 0.52rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__title {
+    font-size: 2rem;
+    letter-spacing: 0.06em;
   }
 }
 

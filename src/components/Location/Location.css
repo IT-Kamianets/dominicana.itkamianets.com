@@ -15,9 +15,9 @@
 
 .location__grid {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: var(--spacing-lg);
-  align-items: stretch;
+  align-items: start;
 }
 
 /* ─── Info panel ─── */
@@ -134,12 +134,10 @@
   border-radius: var(--border-radius-xl, 16px);
   overflow: hidden;
   border: 1px solid var(--border-color, #e5dfd3);
-  min-height: 360px;   /* ← зменшено з 480px */
+  height: 420px;
 }
 
 .location__map-wrap iframe {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
@@ -225,12 +223,40 @@
   }
 
   .location__map-wrap {
-    min-height: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .location__info {
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+  }
+
+  .location__contact-item {
+    gap: 0.6rem;
+  }
+
+  .location__contact-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+  }
+
+  /* Телефон — великий tap target */
+  .location__contact-link {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .location__cta {
+    width: 100%;
+    text-align: center;
   }
 }
 
 @media (max-width: 500px) {
   .location__map-wrap {
-    min-height: 240px;
+    height: 240px;
   }
 }

@@ -3,13 +3,7 @@
    Шрифти, заголовки, параграфи
    ============================================ */
 
-/* ========== ІМПОРТ ШРИФТІВ ========== */
-
-/* Google Fonts: Cormorant Garamond (Headings) */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
-
-/* Google Fonts: Inter (Body) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Шрифти завантажуються через <link> в index.html — @import тут не потрібен */
 
 /* ========== БАЗОВІ СТИЛІ ========== */
 

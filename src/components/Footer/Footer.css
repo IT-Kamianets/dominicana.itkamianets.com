@@ -130,9 +130,19 @@
 @media (max-width: 767px) {
   .footer__col {
     text-align: center;
+    margin-bottom: 0;
   }
 
   .footer__social {
     justify-content: center;
+  }
+
+  /* Посилання у футері — більша зона торкання */
+  .footer__links a,
+  .footer__contacts a {
+    display: inline-block;
+    padding: 4px 0;
+    min-height: 36px;
+    line-height: 28px;
   }
 }
