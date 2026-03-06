@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { rooms } from '../../config';
+import { rooms, hotelConfig } from '../../config';
 import './Rooms.css';
 
 const Rooms = () => {
@@ -56,14 +56,24 @@ const Rooms = () => {
                 </div>
 
                 <div className="room-card__footer">
-                  <div className="room-card__price">
-                    <span className="room-card__price-from">від</span>
-                    <span className="room-card__price-amount">{room.price} {room.currency}</span>
-                    <span className="room-card__price-period">/ ніч</span>
+                  <div className="room-card__price-wrap">
+                    <div className="room-card__price">
+                      <span className="room-card__price-from">від</span>
+                      <span className="room-card__price-amount">{room.price} {room.currency}</span>
+                      <span className="room-card__price-period">/ ніч</span>
+                    </div>
+                    {room.pricePerNight && (
+                      <span className="room-card__price-euro">{room.pricePerNight}</span>
+                    )}
                   </div>
-                  {room.pricePerNight && (
-                    <span className="room-card__price-euro">{room.pricePerNight}</span>
-                  )}
+                  <a
+                    href={hotelConfig.social.booking}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-sm"
+                  >
+                    Замовити
+                  </a>
                 </div>
               </div>
             </div>

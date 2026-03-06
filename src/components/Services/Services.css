@@ -6,15 +6,85 @@
   background-color: var(--bg-tertiary);
 }
 
+.services-slider-wrap {
+  position: relative;
+}
+
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  /* Прозорий фон */
+  backdrop-filter: blur(4px);
+  /* Ефект розмиття */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--text-primary);
+  font-size: 1.8rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  /* Легка тінь */
+  transition: all 0.2s ease;
+}
+
+.slider-nav:hover {
+  background: var(--accent-primary);
+  color: var(--text-on-dark);
+  border-color: var(--accent-primary);
+}
+
+.slider-nav--left {
+  left: 0px;
+}
+
+.slider-nav--right {
+  right: 0px;
+}
+
+/* Приховуємо стрілки на десктопі, де немає скролу */
+@media (min-width: 768px) {
+  .slider-nav {
+    display: none;
+  }
+}
+
 .services-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
   gap: var(--spacing-md);
+  padding: 10px 0 20px 0;
+  /* padding, а не тільки bottom, щоб тіні не обрізались */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.services-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.service-card {
+  min-width: 280px;
+  scroll-snap-align: center;
 }
 
 @media (min-width: 768px) {
   .services-grid {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
+    overflow-x: visible;
+  }
+
+  .service-card {
+    min-width: auto;
   }
 }
 
@@ -41,7 +111,7 @@
   z-index: 2;
 }
 
-.cascade-hover .service-card:hover + .service-card {
+.cascade-hover .service-card:hover+.service-card {
   transform: translateX(4px) scale(0.97);
   opacity: 0.85;
 }

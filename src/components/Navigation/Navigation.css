@@ -91,8 +91,13 @@
   transition: width 0.25s ease;
 }
 
-.nav__link:hover { color: #fff; }
-.nav__link:hover::after { width: 55%; }
+.nav__link:hover {
+  color: #fff;
+}
+
+.nav__link:hover::after {
+  width: 55%;
+}
 
 .nav--scrolled .nav__link {
   color: var(--text-secondary, #4a3f35);
@@ -166,127 +171,92 @@
   transform: translateY(-1px);
 }
 
-.nav--scrolled .btn-nav {
-  /* same style works on white bg */
-}
+/* ─── Mobile Bottom Navigation ─── */
 
-/* ─── Hamburger ─── */
-
-.nav__hamburger {
+.nav__bottom {
   display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
-  z-index: 10;
-}
-
-.nav__hamburger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 2px;
-  transition: all 0.2s ease;
-}
-
-.nav--scrolled .nav__hamburger span {
-  background: var(--text-primary, #2c2418);
-}
-
-.nav__hamburger--open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.nav__hamburger--open span:nth-child(2) {
-  opacity: 0;
-}
-.nav__hamburger--open span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* ─── Mobile menu ─── */
-
-.nav__mobile {
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.99);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(16px);
-  box-shadow: 0 8px 32px rgba(44, 36, 24, 0.12);
-  padding: var(--spacing-sm, 1rem) 0;
-  animation: mobileMenuIn 0.2s cubic-bezier(0, 0, 0.2, 1);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  z-index: var(--z-fixed, 300);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-@keyframes mobileMenuIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: none; }
-}
-
-.nav__mobile-links {
+.nav__bottom-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
+  height: 68px;
 }
 
-.nav__mobile-link {
+.nav__bottom-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-secondary, #6c5f50);
+  gap: 5px;
+  flex: 1;
+  height: 100%;
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.nav__bottom-link[href^="tel:"] {
+  color: var(--accent-primary, #8b6f47);
+  font-weight: 600;
+}
+
+.nav__bottom-link:hover,
+.nav__bottom-link:active {
+  color: var(--accent-primary, #8b6f47);
+  transform: translateY(-2px);
+}
+
+.nav__bottom-icon {
   display: block;
-  padding: 0.75rem var(--spacing-md, 1.5rem);
+}
+
+.nav__bottom-label {
   font-family: var(--font-body);
-  font-size: var(--font-size-base, 1rem);
+  font-size: 0.7rem;
   font-weight: 500;
-  color: var(--text-primary, #2c2418);
-  text-decoration: none;
-  transition: all 0.15s ease;
-}
-
-.nav__mobile-link:hover {
-  color: var(--accent-primary, #8b6f47);
-  background: var(--bg-tertiary, #f5f1e8);
-}
-
-.nav__mobile-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-sm, 1rem) var(--spacing-md, 1.5rem);
-  border-top: 1px solid var(--border-color, #e5dfd3);
-  margin-top: var(--spacing-xs, 0.5rem);
-}
-
-.nav__mobile-phone {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-secondary, #4a3f35);
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-
-.nav__mobile-phone:hover {
-  color: var(--accent-primary, #8b6f47);
+  text-align: center;
+  line-height: 1;
 }
 
 /* ─── Responsive ─── */
 
 @media (max-width: 1100px) {
   .nav__phone span {
-    display: none; /* на середніх — тільки іконка */
+    display: none;
+    /* на середніх — тільки іконка */
   }
 }
 
 @media (max-width: 991px) {
-  .nav__links,
-  .nav__actions {
-    display: none;
+  .nav {
+    display: none !important;
   }
 
-  .nav__hamburger {
-    display: flex;
+  .nav__bottom {
+    display: block;
+  }
+}
+
+@media (max-width: 991px) {
+
+  /* Add global padding to body so bottom bar doesn't cover content */
+  body {
+    padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
   }
 }

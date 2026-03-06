@@ -40,8 +40,8 @@ const Hero = () => {
         </p>
 
         <div className="hero__ctas hero__anim hero__anim--4">
-          <a href="#contact" className="btn-hero">Забронювати номер</a>
-          <a href="#rooms" className="hero__link">Переглянути номери ↓</a>
+          <a href={hotelConfig.social.booking} target="_blank" rel="noopener noreferrer" className="btn-hero">Забронювати</a>
+          <a href="#rooms" className="hero__link" style={{ marginTop: '0.5rem' }}>Переглянути номери ↓</a>
         </div>
       </div>
 

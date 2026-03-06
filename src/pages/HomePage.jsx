@@ -6,7 +6,6 @@ import Services from '../components/Services/Services';
 import Gallery from '../components/Gallery/Gallery';
 import Testimonials from '../components/Testimonials/Testimonials';
 import Location from '../components/Location/Location';
-import Contact from '../components/Contact/Contact';
 
 const HomePage = () => {
   return (
@@ -18,7 +17,6 @@ const HomePage = () => {
       <Gallery />
       <Testimonials />
       <Location />
-      <Contact />
     </main>
   );
 };

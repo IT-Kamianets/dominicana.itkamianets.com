@@ -6,22 +6,19 @@ export const hotelConfig = {
   hotelName: "Y Dominikana",
   tagline: "Відмінне розташування у серці старого міста",
   description: "Чудовий міні-готель з відмінним сервісом у центрі Кам'янець-Подільського. Стильні номери з балконами, вид на історичні пам'ятки міста, затишна атмосфера та гостинний персонал. Ресторан української та міжнародної кухні на території.",
-  
+
   // Контактна інформація
   contact: {
-    phone: "+380 XX XXX XX XX",
-    email: "info@udominikana.com",
+    phone: "+380 67 862 1345",
     address: "вул. Домініканська, 2а, Кам'янець-Подільський, 32300, Україна",
     workingHours: "Реєстрація заїзду: 14:00-19:00, виїзду: 07:00-11:00"
   },
-  
-  // Соціальні мережі
+
+  // Соціальні мережі та Бронювання
   social: {
-    facebook: "https://facebook.com/yourhotel",
-    instagram: "https://instagram.com/yourhotel",
-    tripadvisor: "https://tripadvisor.com/yourhotel"
+    booking: "https://www.booking.com/hotel/ua/u-dominicana.uk.html?aid=356980&label=gog235jc-10CAso6QFCDHUtZG9taW5pY2FuYUghWANo6QGIAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGoAgG4ApDtrM0GwAIB0gIkMGYwZTI2NTItZGE1Zi00ZjQ2LTkwMDAtMGEzOWZjZDhkOTRh2AIB4AIB&sid=041c8f3bd907f6d36618717acc663453&all_sr_blocks=109329715_376995139_2_0_0&checkin=2026-03-06&checkout=2026-03-07&dest_id=-1040849&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&highlighted_blocks=109329715_376995139_2_0_0&hpos=1&matching_block_id=109329715_376995139_2_0_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=109329715_376995139_2_0_0__120000&srepoch=1772828410&srpvid=46508ec94abe0163&type=total&ucfs=1&"
   },
-  
+
   // Google Maps координати
   location: {
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2632.945!2d26.58091!3d48.66360!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDM5JzQ5LjAiTiAyNsKwMzQnNTEuMyJF!5e0!3m2!1suk!2sua!4v1234567890123",
