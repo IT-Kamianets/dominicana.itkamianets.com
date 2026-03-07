@@ -16,7 +16,8 @@ export const hotelConfig = {
 
   // Соціальні мережі та Бронювання
   social: {
-    booking: "https://www.booking.com/hotel/ua/u-dominicana.uk.html?aid=356980&label=gog235jc-10CAso6QFCDHUtZG9taW5pY2FuYUghWANo6QGIAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGoAgG4ApDtrM0GwAIB0gIkMGYwZTI2NTItZGE1Zi00ZjQ2LTkwMDAtMGEzOWZjZDhkOTRh2AIB4AIB&sid=041c8f3bd907f6d36618717acc663453&all_sr_blocks=109329715_376995139_2_0_0&checkin=2026-03-06&checkout=2026-03-07&dest_id=-1040849&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&highlighted_blocks=109329715_376995139_2_0_0&hpos=1&matching_block_id=109329715_376995139_2_0_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=109329715_376995139_2_0_0__120000&srepoch=1772828410&srpvid=46508ec94abe0163&type=total&ucfs=1&"
+    booking: "https://www.booking.com/hotel/ua/u-dominicana.uk.html?aid=356980&label=gog235jc-10CAso6QFCDHUtZG9taW5pY2FuYUghWANo6QGIAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGoAgG4ApDtrM0GwAIB0gIkMGYwZTI2NTItZGE1Zi00ZjQ2LTkwMDAtMGEzOWZjZDhkOTRh2AIB4AIB&sid=041c8f3bd907f6d36618717acc663453&all_sr_blocks=109329715_376995139_2_0_0&checkin=2026-03-06&checkout=2026-03-07&dest_id=-1040849&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&highlighted_blocks=109329715_376995139_2_0_0&hpos=1&matching_block_id=109329715_376995139_2_0_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=109329715_376995139_2_0_0__120000&srepoch=1772828410&srpvid=46508ec94abe0163&type=total&ucfs=1&",
+    instagram: "https://www.instagram.com/u_dominikana_kp/?hl=ru"
   },
 
   // Google Maps координати

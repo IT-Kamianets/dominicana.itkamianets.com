@@ -1,19 +1,35 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { services } from '../../config';
 import Icon from '../Icon';
 import './Services.css';
 
 const Services = () => {
   const scrollRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      // Використовуємо ширину картки або контейнера
       const scrollAmount = scrollRef.current.clientWidth > 400 ? 300 : scrollRef.current.clientWidth * 0.85;
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
       });
+    }
+  };
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const scrollLeft = scrollRef.current.scrollLeft;
+      const width = scrollRef.current.clientWidth;
+      const index = Math.round(scrollLeft / width);
+      setActiveIndex(index);
+    }
+  };
+
+  const scrollTo = (index) => {
+    if (scrollRef.current) {
+      const width = scrollRef.current.clientWidth;
+      scrollRef.current.scrollTo({ left: width * index, behavior: 'smooth' });
     }
   };
 
@@ -26,15 +42,8 @@ const Services = () => {
         </p>
 
         <div className="services-slider-wrap">
-          <button
-            className="slider-nav slider-nav--left"
-            onClick={() => scroll('left')}
-            aria-label="Previous services"
-          >
-            ‹
-          </button>
 
-          <div className="services-grid cascade-hover" ref={scrollRef}>
+          <div className="services-grid cascade-hover" ref={scrollRef} onScroll={handleScroll}>
             {services.map((service, i) => (
               <div
                 className="service-card"
@@ -50,14 +59,17 @@ const Services = () => {
               </div>
             ))}
           </div>
+        </div>
 
-          <button
-            className="slider-nav slider-nav--right"
-            onClick={() => scroll('right')}
-            aria-label="Next services"
-          >
-            ›
-          </button>
+        <div className="slider-dots">
+          {services.map((_, idx) => (
+            <button
+              key={idx}
+              className={`slider-dot ${activeIndex === idx ? 'active' : ''}`}
+              onClick={() => scrollTo(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>

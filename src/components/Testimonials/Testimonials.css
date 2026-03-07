@@ -132,3 +132,23 @@
   color: var(--text-muted);
   font-weight: var(--font-weight-medium);
 }
+
+.testimonials-action {
+  text-align: right;
+  margin-top: var(--spacing-md);
+  padding-right: var(--spacing-sm);
+}
+
+.testimonials-more-link {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-base);
+}
+
+.testimonials-more-link:hover {
+  color: var(--accent-primary);
+  text-decoration: underline;
+}

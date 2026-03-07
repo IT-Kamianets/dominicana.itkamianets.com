@@ -61,27 +61,7 @@ html {
   position: relative;
 }
 
-/* Keep the accent underline only when there's no eyebrow above */
-.section-title:not(:first-child)::after {
-  display: none;
-}
-
-.section-title:first-child::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  height: 2px;
-  background: var(--accent-primary);
-  border-radius: 2px;
-}
-
-/* When section-title follows an eyebrow, no pseudo underline needed */
-.section-eyebrow + .section-title::after {
-  display: none;
-}
+/* Removed pseudo-element underline completely */
 
 .section-subtitle {
   font-family: var(--font-body);
@@ -114,7 +94,8 @@ html {
   line-height: 1.5;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-primary:visited {
   background-color: var(--accent-primary);
   color: var(--text-on-dark);
   border-color: var(--accent-primary);
@@ -132,7 +113,8 @@ html {
   transform: translateY(0);
 }
 
-.btn-outline {
+.btn-outline,
+.btn-outline:visited {
   background-color: transparent;
   color: var(--accent-primary);
   border-color: var(--accent-primary);
@@ -225,4 +207,45 @@ select:focus {
   .container {
     padding-inline: var(--spacing-sm);
   }
+}
+
+/* Scroll lock for modals */
+html.no-scroll,
+html.no-scroll body {
+  overflow: hidden !important;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+/* Global Slider Dots */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: var(--spacing-md);
+  padding-bottom: 8px;
+}
+
+@media (min-width: 768px) {
+  .slider-dots {
+    display: none;
+  }
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--border-color-dark);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.slider-dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background-color: var(--accent-primary);
 }

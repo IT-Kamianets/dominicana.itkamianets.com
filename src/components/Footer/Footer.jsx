@@ -1,5 +1,6 @@
 import React from 'react';
 import { hotelConfig } from '../../config';
+import Icon from '../Icon';
 import './Footer.css';
 
 const Footer = () => {
@@ -44,7 +45,12 @@ const Footer = () => {
               </li>
             </ul>
             <div className="footer__social">
-              <a href={hotelConfig.social.booking} target="_blank" rel="noopener noreferrer" aria-label="Booking.com" className="booking-link">Booking.com</a>
+              <a href={hotelConfig.social.booking} target="_blank" rel="noopener noreferrer" aria-label="Booking.com" className="footer__social-link booking-link">
+                Booking.com
+              </a>
+              <a href={hotelConfig.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="footer__social-link instagram-link">
+                <Icon name="instagram" size={20} />
+              </a>
             </div>
           </div>
         </div>

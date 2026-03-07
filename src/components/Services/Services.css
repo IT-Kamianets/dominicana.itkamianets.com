@@ -72,7 +72,8 @@
 }
 
 .service-card {
-  min-width: 280px;
+  min-width: 100%;
+  flex: 0 0 100%;
   scroll-snap-align: center;
 }
 

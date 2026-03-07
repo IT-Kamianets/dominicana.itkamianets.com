@@ -144,20 +144,13 @@
 
   /* Warm colour grade */
   filter:
-    sepia(30%)
-    saturate(85%)
-    hue-rotate(8deg)
-    brightness(0.98)
-    contrast(1.04);
+    sepia(30%) saturate(85%) hue-rotate(8deg) brightness(0.98) contrast(1.04);
   transition: filter 0.4s ease;
 }
 
 .location__map-wrap:hover iframe {
   filter:
-    sepia(12%)
-    saturate(92%)
-    brightness(1)
-    contrast(1.02);
+    sepia(12%) saturate(92%) brightness(1) contrast(1.02);
 }
 
 /* Thin warm vignette over the map */
@@ -168,13 +161,11 @@
   pointer-events: none;
   border-radius: inherit;
   background:
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       rgba(245, 241, 232, 0.18) 0%,
       transparent 15%,
       transparent 85%,
-      rgba(245, 241, 232, 0.14) 100%
-    );
+      rgba(245, 241, 232, 0.14) 100%);
 }
 
 /* Custom pin bubble */

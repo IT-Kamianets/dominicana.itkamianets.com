@@ -323,8 +323,8 @@
   }
 
   .hero__strip-inner {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   /* Ховаємо вертикальні роздільники між колонками */
@@ -334,19 +334,28 @@
 
   /* Горизонтальні роздільники між рядками */
   .hero__strip-item {
-    border-right: none;
-    border-top: none;
+    border: none;
     width: 100%;
     padding: 0.8rem 0;
   }
 
   .hero__strip-item:not(:last-child) {
+    border-bottom: none;
+  }
+
+  .hero__strip-item:nth-child(1),
+  .hero__strip-item:nth-child(3) {
     border-bottom: 1px solid var(--border-color, #e5dfd3);
+  }
+
+  .hero__strip-item:nth-child(1),
+  .hero__strip-item:nth-child(5) {
+    border-right: 1px solid var(--border-color, #e5dfd3);
   }
 
   /* Четвертий елемент — зірки/сепаратор */
   .hero__strip-item:nth-child(7) {
-    display: none;
+    display: flex;
   }
 
   .hero__strip-item strong {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { hotelConfig } from '../../config';
 import './Testimonials.css';
 
 const reviews = [
@@ -69,6 +70,17 @@ const Testimonials = () => {
               <p className="testimonial-card__source">{review.source}</p>
             </div>
           ))}
+        </div>
+
+        <div className="testimonials-action">
+          <a
+            href={hotelConfig.social.booking}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="testimonials-more-link"
+          >
+            Більше відгуків на Booking.com ↗
+          </a>
         </div>
       </div>
     </section>

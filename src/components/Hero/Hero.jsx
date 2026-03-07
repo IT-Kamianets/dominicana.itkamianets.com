@@ -1,5 +1,6 @@
 import React from 'react';
 import { hotelConfig } from '../../config';
+import heroImg from '../../assets/images/hero.webp';
 import './Hero.css';
 
 const Hero = () => {
@@ -10,8 +11,7 @@ const Hero = () => {
       <div
         className="hero__bg"
         style={{
-          backgroundImage:
-            'url(https://udominicanakamianetspodilskyi.ua-hotel.com/data/Photos/OriginalPhoto/14217/1421771/1421771208/photo-u-dominicana-kamianets-podilskyi-1=w1920-h1080.JPEG)',
+          backgroundImage: `url(${heroImg})`,
         }}
         role="img"
         aria-label="Кам'янець-Подільський"

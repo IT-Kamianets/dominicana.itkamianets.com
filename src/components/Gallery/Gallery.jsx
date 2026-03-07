@@ -1,39 +1,60 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { hotelConfig } from '../../config';
 import './Gallery.css';
 
 // ─── Локальні фото з assets/gallery/ ───────────────────────────
 // Закидай файли з назвами 1.webp, 2.webp, ... 12.webp
 // у папку src/assets/gallery/
-import photo1 from '../../assets/gallery/1.webp';
-import photo2 from '../../assets/gallery/2.webp';
-import photo3 from '../../assets/gallery/3.webp';
-import photo4 from '../../assets/gallery/4.webp';
-import photo5 from '../../assets/gallery/5.webp';
-import photo6 from '../../assets/gallery/6.webp';
-import photo7 from '../../assets/gallery/7.webp';
-import photo8 from '../../assets/gallery/8.webp';
-import photo9 from '../../assets/gallery/9.webp';
-import photo10 from '../../assets/gallery/10.webp';
-import photo11 from '../../assets/gallery/11.webp';
-import photo12 from '../../assets/gallery/12.webp';
+import photo1 from '../../assets/gallery/exterior-night.webp';
+import photo2 from '../../assets/gallery/bathroom.webp';
+import photo3 from '../../assets/gallery/staircase-interior.webp';
+import photo4 from '../../assets/gallery/exterior-sign.webp';
+import photo5 from '../../assets/gallery/reception.webp';
+import photo6 from '../../assets/gallery/staircase-view.webp';
+import photo7 from '../../assets/gallery/balcony-view.webp';
+import photo8 from '../../assets/gallery/hotel-church.webp';
+import photo9 from '../../assets/gallery/restaurant.webp';
+import photo10 from '../../assets/gallery/city-view.webp';
+import photo11 from '../../assets/gallery/breakfast.webp';
+import photo12 from '../../assets/gallery/interior-decor.webp';
 
 const PHOTOS = [
-  { src: photo1, alt: "Фасад готелю У Домінікана у Кам'янці-Подільському" },
-  { src: photo2, alt: "Інтер'єр ресторану готелю з автентичним дизайном" },
-  { src: photo3, alt: "Просторий номер Делюкс з великим двоспальним ліжком" },
-  { src: photo4, alt: "Ванна кімната з душовою кабіною в номері" },
-  { src: photo5, alt: "Світлий двомісний номер з робочою зоною" },
-  { src: photo6, alt: "Вид з вікна готелю на старе місто Кам'янця-Подільського" },
-  { src: photo7, alt: "Облаштована зона для відпочинку в номері" },
-  { src: photo8, alt: "Смачний сніданок в ресторані готелю У Домінікана" },
-  { src: photo9, alt: "Затишний хол та рецепція готелю" },
-  { src: photo10, alt: "Деталі інтер'єру класичного номеру" },
-  { src: photo11, alt: "Літня тераса готелю з видом на пам'ятки" },
-  { src: photo12, alt: "Вечірній вид на готель У Домінікана" },
+  { src: photo1, alt: "Фасад готелю Y Dominikana вночі" },
+  { src: photo2, alt: "Сучасна ванна кімната в готелі" },
+  { src: photo3, alt: "Інтер'єр готелю та дерев'яні сходи" },
+  { src: photo4, alt: "Історична вивіска готелю Y Dominikana" },
+  { src: photo5, alt: "Зона рецепції та прийому гостей" },
+  { src: photo6, alt: "Вигляд на сходи всередині готелю" },
+  { src: photo7, alt: "Затишний балкон з видом на вечірнє місто" },
+  { src: photo8, alt: "Вид на готель та вежу навпроти" },
+  { src: photo9, alt: "Ресторан готелю з автентичним баром" },
+  { src: photo10, alt: "Панорама старого міста з вікна номера" },
+  { src: photo11, alt: "Смачний сніданок з авокадо та лососем" },
+  { src: photo12, alt: "Деталі декору та історичний інтер'єр" },
 ];
 
 const Gallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) goNext();
+    if (isRightSwipe) goPrev();
+  };
 
   const closeLightbox = () => setLightboxIndex(null);
 
@@ -52,24 +73,43 @@ const Gallery = () => {
       if (e.key === 'ArrowRight') goNext();
       if (e.key === 'ArrowLeft') goPrev();
     };
-    document.body.style.overflow = 'hidden';
+    document.documentElement.classList.add('no-scroll');
+    document.body.classList.add('no-scroll');
     window.addEventListener('keydown', handle);
     return () => {
-      document.body.style.overflow = '';
+      document.documentElement.classList.remove('no-scroll');
+      document.body.classList.remove('no-scroll');
       window.removeEventListener('keydown', handle);
     };
   }, [lightboxIndex, goNext, goPrev]);
 
   const scrollRef = useRef(null);
 
+  const [activePhotoIndex, setActivePhotoIndex] = useState(0);
+
   const scrollGrid = (direction) => {
     if (scrollRef.current) {
-      // Використовуємо ширину контейнера, а не window.innerWidth
       const scrollAmount = scrollRef.current.clientWidth;
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
       });
+    }
+  };
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const scrollLeft = scrollRef.current.scrollLeft;
+      const width = scrollRef.current.clientWidth;
+      const index = Math.round(scrollLeft / width);
+      setActivePhotoIndex(index);
+    }
+  };
+
+  const scrollTo = (index) => {
+    if (scrollRef.current) {
+      const width = scrollRef.current.clientWidth;
+      scrollRef.current.scrollTo({ left: width * index, behavior: 'smooth' });
     }
   };
 
@@ -86,15 +126,8 @@ const Gallery = () => {
         </div>
 
         <div className="gallery-slider-wrap">
-          <button
-            className="slider-nav slider-nav--left"
-            onClick={() => scrollGrid('left')}
-            aria-label="Previous photo"
-          >
-            ‹
-          </button>
 
-          <div className="gallery__grid" ref={scrollRef}>
+          <div className="gallery__grid" ref={scrollRef} onScroll={handleScroll}>
             {PHOTOS.map((item, i) => (
               <button
                 key={i}
@@ -122,14 +155,28 @@ const Gallery = () => {
               </button>
             ))}
           </div>
+        </div>
 
-          <button
-            className="slider-nav slider-nav--right"
-            onClick={() => scrollGrid('right')}
-            aria-label="Next photo"
+        <div className="slider-dots">
+          {PHOTOS.map((_, idx) => (
+            <button
+              key={idx}
+              className={`slider-dot ${activePhotoIndex === idx ? 'active' : ''}`}
+              onClick={() => scrollTo(idx)}
+              aria-label={`Go to photo ${idx + 1}`}
+            />
+          ))}
+        </div>
+
+        <div className="gallery__footer">
+          <a
+            href={hotelConfig.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gallery__more-link"
           >
-            ›
-          </button>
+            Більше фото в нашому Instagram ↗
+          </a>
         </div>
       </div>
 
@@ -141,6 +188,9 @@ const Gallery = () => {
           role="dialog"
           aria-modal="true"
           aria-label="Перегляд фото"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
         >
           <div className="gallery__lb-content" onClick={e => e.stopPropagation()}>
             <button className="gallery__lb-close" onClick={closeLightbox} aria-label="Закрити">
