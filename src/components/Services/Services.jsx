@@ -1,38 +1,25 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { services } from '../../config';
 import Icon from '../Icon';
 import './Services.css';
 
+const row1 = services.slice(0, 5);
+const row2 = services.slice(5);
+
+const MarqueeRow = ({ items, reverse = false }) => (
+  <div className={`marquee-track${reverse ? ' marquee-track--reverse' : ''}`}>
+    {[...items, ...items, ...items].map((service, i) => (
+      <div key={i} className="marquee-item">
+        <div className="marquee-item__icon">
+          <Icon name={service.icon} size={18} />
+        </div>
+        <span className="marquee-item__name">{service.title}</span>
+      </div>
+    ))}
+  </div>
+);
+
 const Services = () => {
-  const scrollRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const scrollAmount = scrollRef.current.clientWidth > 400 ? 300 : scrollRef.current.clientWidth * 0.85;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const handleScroll = () => {
-    if (scrollRef.current) {
-      const scrollLeft = scrollRef.current.scrollLeft;
-      const width = scrollRef.current.clientWidth;
-      const index = Math.round(scrollLeft / width);
-      setActiveIndex(index);
-    }
-  };
-
-  const scrollTo = (index) => {
-    if (scrollRef.current) {
-      const width = scrollRef.current.clientWidth;
-      scrollRef.current.scrollTo({ left: width * index, behavior: 'smooth' });
-    }
-  };
-
   return (
     <section id="services" className="section services-section">
       <div className="container">
@@ -40,37 +27,11 @@ const Services = () => {
         <p className="section-subtitle" data-animate="fade-in">
           Все необхідне для вашого комфортного відпочинку
         </p>
+      </div>
 
-        <div className="services-slider-wrap">
-
-          <div className="services-grid cascade-hover" ref={scrollRef} onScroll={handleScroll}>
-            {services.map((service, i) => (
-              <div
-                className="service-card"
-                key={service.id}
-                data-animate="scale-up"
-                style={{ transitionDelay: `${i * 60}ms` }}
-              >
-                <div className="service-card__icon">
-                  <Icon name={service.icon} size={28} />
-                </div>
-                <h5 className="service-card__title">{service.title}</h5>
-                <p className="service-card__desc">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="slider-dots">
-          {services.map((_, idx) => (
-            <button
-              key={idx}
-              className={`slider-dot ${activeIndex === idx ? 'active' : ''}`}
-              onClick={() => scrollTo(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
-        </div>
+      <div className="marquee-wrap">
+        <MarqueeRow items={row1} />
+        <MarqueeRow items={row2} reverse />
       </div>
     </section>
   );
