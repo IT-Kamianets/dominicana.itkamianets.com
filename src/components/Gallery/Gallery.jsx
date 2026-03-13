@@ -84,12 +84,19 @@ const Gallery = () => {
   }, [lightboxIndex, goNext, goPrev]);
 
   const scrollRef = useRef(null);
-
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
+
+  const getCardScrollWidth = () => {
+    if (!scrollRef.current || scrollRef.current.children.length === 0) return scrollRef.current?.clientWidth || 0;
+    const child = scrollRef.current.children[0];
+    const style = window.getComputedStyle(scrollRef.current);
+    const gap = parseFloat(style.gap) || 0;
+    return child.offsetWidth + gap;
+  };
 
   const scrollGrid = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = scrollRef.current.clientWidth;
+      const scrollAmount = getCardScrollWidth();
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -100,7 +107,7 @@ const Gallery = () => {
   const handleScroll = () => {
     if (scrollRef.current) {
       const scrollLeft = scrollRef.current.scrollLeft;
-      const width = scrollRef.current.clientWidth;
+      const width = getCardScrollWidth();
       const index = Math.round(scrollLeft / width);
       setActivePhotoIndex(index);
     }
@@ -108,8 +115,9 @@ const Gallery = () => {
 
   const scrollTo = (index) => {
     if (scrollRef.current) {
-      const width = scrollRef.current.clientWidth;
+      const width = getCardScrollWidth();
       scrollRef.current.scrollTo({ left: width * index, behavior: 'smooth' });
+      setActivePhotoIndex(index);
     }
   };
 
@@ -180,42 +188,44 @@ const Gallery = () => {
         </div>
       </div>
 
-      {/* Lightbox */}
+      {/* GALLERY MODAL */}
       {lightboxIndex !== null && (
-        <div
-          className="gallery__lightbox"
-          onClick={closeLightbox}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Перегляд фото"
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        >
-          <div className="gallery__lb-content" onClick={e => e.stopPropagation()}>
-            <button className="gallery__lb-close" onClick={closeLightbox} aria-label="Закрити">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2.2">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
+        <div className="gallery-modal" onClick={closeLightbox}>
+          <button className="gallery-modal__close" onClick={closeLightbox}>&times;</button>
 
-            <button className="gallery__lb-nav gallery__lb-nav--prev" onClick={goPrev} aria-label="Попередня">‹</button>
+          <div
+            className="gallery-modal__content"
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            <button className="gallery-modal__nav prev" onClick={(e) => { e.stopPropagation(); goPrev(); }}>&#10094;</button>
 
-            <img
-              src={PHOTOS[lightboxIndex].src}
-              alt={PHOTOS[lightboxIndex].alt}
-              className="gallery__lb-img"
-            />
-
-            <button className="gallery__lb-nav gallery__lb-nav--next" onClick={goNext} aria-label="Наступна">›</button>
-
-            <div className="gallery__lb-footer">
-              <span className="gallery__lb-counter">
+            <div className="gallery-modal__main-image-container">
+              <img
+                src={PHOTOS[lightboxIndex].src}
+                alt={PHOTOS[lightboxIndex].alt}
+                className="gallery-modal__main-image"
+              />
+              <div className="gallery-modal__counter">
                 {lightboxIndex + 1} / {PHOTOS.length}
-              </span>
+              </div>
             </div>
+
+            <button className="gallery-modal__nav next" onClick={(e) => { e.stopPropagation(); goNext(); }}>&#10095;</button>
+          </div>
+
+          <div className="gallery-modal__thumbnails" onClick={(e) => e.stopPropagation()}>
+            {PHOTOS.map((img, idx) => (
+              <img
+                key={idx}
+                src={img.src}
+                alt="Miniature"
+                className={`gallery-modal__thumb ${idx === lightboxIndex ? 'active' : ''}`}
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex(idx); }}
+              />
+            ))}
           </div>
         </div>
       )}

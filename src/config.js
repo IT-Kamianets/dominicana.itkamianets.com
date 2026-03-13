@@ -16,7 +16,7 @@ export const hotelConfig = {
 
   // Соціальні мережі та Бронювання
   social: {
-    booking: "https://www.booking.com/hotel/ua/u-dominicana.uk.html?aid=356980&label=gog235jc-10CAso6QFCDHUtZG9taW5pY2FuYUghWANo6QGIAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGoAgG4ApDtrM0GwAIB0gIkMGYwZTI2NTItZGE1Zi00ZjQ2LTkwMDAtMGEzOWZjZDhkOTRh2AIB4AIB&sid=041c8f3bd907f6d36618717acc663453&all_sr_blocks=109329715_376995139_2_0_0&checkin=2026-03-06&checkout=2026-03-07&dest_id=-1040849&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&highlighted_blocks=109329715_376995139_2_0_0&hpos=1&matching_block_id=109329715_376995139_2_0_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=109329715_376995139_2_0_0__120000&srepoch=1772828410&srpvid=46508ec94abe0163&type=total&ucfs=1&",
+    booking: "https://www.booking.com/hotel/ua/u-dominicana.uk.html",
     instagram: "https://www.instagram.com/u_dominikana_kp/?hl=ru"
   },
 
@@ -34,7 +34,13 @@ export const rooms = [
     id: 1,
     name: "Двомісний номер Делюкс з балконом",
     description: "Просторий номер площею 40 м² з балконом та видом на пам'ятки старого міста.",
-    image: "https://cf.bstatic.com/xdata/images/hotel/max2048/665479151.jpg?k=69a43b0b55f51b2d6f5b48c4b081170b95896acdf0592fa45c906c58aec8e574&o=",
+    images: [
+      "/rooms/1/1_main.webp",
+      "/rooms/1/2.webp",
+      "/rooms/1/3.webp",
+      "/rooms/1/4.webp",
+      "/rooms/1/5.webp"
+    ],
     price: "2150",
     currency: "грн",
     area: "40 м²",
@@ -50,7 +56,14 @@ export const rooms = [
     id: 2,
     name: "Двомісний номер з балконом (з диваном)",
     description: "Комфортний номер 27 м² з балконом та додатковим диваном.",
-    image: "https://cf.bstatic.com/xdata/images/hotel/max2048/628118805.jpg?k=a7cbf386862fef1edc6c52cc3e47e20a1400858c6e2acd24da90fb539a1a71f5&o=",
+    images: [
+      "/rooms/2/1_main.webp",
+      "/rooms/2/2.webp",
+      "/rooms/2/3.webp",
+      "/rooms/2/4.webp",
+      "/rooms/2/5.webp",
+      "/rooms/2/6.webp"
+    ],
     price: "1900",
     currency: "грн",
     area: "27 м²",
@@ -66,7 +79,15 @@ export const rooms = [
     id: 3,
     name: "Двомісний номер з балконом",
     description: "Світлий номер 27 м² з балконом та видом на місто.",
-    image: "https://cf.bstatic.com/xdata/images/hotel/max2048/612688111.jpg?k=dfcb8765451a59ae798e8982ed71cc7c5612fa067546c32a62c0f84426bc0b04&o=",
+    images: [
+      "/rooms/3/1_main.webp",
+      "/rooms/3/2.webp",
+      "/rooms/3/3.webp",
+      "/rooms/3/4.webp",
+      "/rooms/3/5.webp",
+      "/rooms/3/6.webp",
+      "/rooms/3/7.webp"
+    ],
     price: "1900",
     currency: "грн",
     area: "27 м²",
@@ -82,7 +103,13 @@ export const rooms = [
     id: 4,
     name: "Стандартний номер із ліжком King-size",
     description: "Номер площею 30 м² з особливо широким ліжком та зоною відпочинку.",
-    image: "https://cf.bstatic.com/xdata/images/hotel/max2048/665486494.jpg?k=5d16ddd9d6ee740ee7975941f9d410004109d6e5b5b76afc44605458a8f56be4&o=",
+    images: [
+      "/rooms/4/1_main.webp",
+      "/rooms/4/2.webp",
+      "/rooms/4/3.webp",
+      "/rooms/4/4.webp",
+      "/rooms/4/5.webp"
+    ],
     price: "2000",
     currency: "грн",
     area: "30 м²",
@@ -98,7 +125,17 @@ export const rooms = [
     id: 5,
     name: "Напівлюкс з балконом",
     description: "Двокімнатний номер 37 м² з балконом та окремою зоною вітальні.",
-    image: "https://cf.bstatic.com/xdata/images/hotel/max2048/662749101.jpg?k=fc313495b32b6753064dd908ba30e8dbc5e41e5927a6bd6978f877590cffcba3&o=",
+    images: [
+      "/rooms/5/1_main.webp",
+      "/rooms/5/2.webp",
+      "/rooms/5/3.webp",
+      "/rooms/5/4.webp",
+      "/rooms/5/5.webp",
+      "/rooms/5/6.webp",
+      "/rooms/5/7.webp",
+      "/rooms/5/8.webp",
+      "/rooms/5/9.webp"
+    ],
     price: "2400",
     currency: "грн",
     area: "37 м²",
@@ -114,7 +151,13 @@ export const rooms = [
     id: 7,
     name: "Двомісний номер (15 м², варіант 2)",
     description: "Класичний номер з базовими зручностями.",
-    image: "https://cf.bstatic.com/xdata/images/hotel/max2048/672550124.jpg?k=8ac3671226f39d4620f9af2f4e50a489b1727dae3fe2425d0e51d131a68f44d6&o=",
+    images: [
+      "/rooms/7/1_main.webp",
+      "/rooms/7/2.webp",
+      "/rooms/7/3.webp",
+      "/rooms/7/4.webp",
+      "/rooms/7/5.webp"
+    ],
     price: "1500",
     currency: "грн",
     area: "15 м²",
@@ -130,7 +173,15 @@ export const rooms = [
     id: 8,
     name: "Стандартний двомісний номер",
     description: "Компактний номер 12 м² у мансардному стилі.",
-    image: "https://cf.bstatic.com/xdata/images/hotel/max2048/612668111.jpg?k=6888e7afd060262ec49f112dfae898529ee65b3733c2eb95f67d882394bb8dc3&o=",
+    images: [
+      "/rooms/8/1_main.webp",
+      "/rooms/8/2.webp",
+      "/rooms/8/3.webp",
+      "/rooms/8/4.webp",
+      "/rooms/8/5.webp",
+      "/rooms/8/6.webp",
+      "/rooms/8/7.webp"
+    ],
     price: "1350",
     currency: "грн",
     area: "12 м²",
@@ -146,7 +197,10 @@ export const rooms = [
     id: 9,
     name: "Покращений двомісний номер",
     description: "Просторий номер 24 м² з додатковою зоною відпочинку.",
-    image: "https://cf.bstatic.com/xdata/images/hotel/max2048/665491945.jpg?k=9367f0ee2080699ab22c6a80c8d52526dfd017c06f0241727ddeec19f9cde3e6&o=",
+    images: [
+      "/rooms/9/1_main.webp",
+      "/rooms/9/2.webp"
+    ],
     price: "1700",
     currency: "грн",
     area: "24 м²",
@@ -162,7 +216,12 @@ export const rooms = [
     id: 10,
     name: "Бюджетний двомісний номер",
     description: "Бюджетний варіант 12 м² з балконом та необхідними зручностями.",
-    image: "https://cf.bstatic.com/xdata/images/hotel/max2048/789395988.jpg?k=5b822730935c59c61b05f9c7d0517c96e3682d2ebe1849960ac5d9a02c7a4edd&o=",
+    images: [
+      "/rooms/10/1_main.webp",
+      "/rooms/10/2.webp",
+      "/rooms/10/3.webp",
+      "/rooms/10/4.webp"
+    ],
     price: "1200",
     currency: "грн",
     area: "12 м²",
@@ -173,6 +232,24 @@ export const rooms = [
     amenities: ["Опалення"],
     view: "Вид на пам'ятку",
     rating: 9.5
+  },
+  {
+    id: 11,
+    name: "Двомісний номер",
+    description: "Затишний номер 15 м² з власною ванною кімнатою та зоною для відпочинку.",
+    images: [
+      "/rooms/11/1.webp"
+    ],
+    price: "1500",
+    currency: "грн",
+    area: "15 м²",
+    guests: 2,
+    beds: "1 ліжко розміру Queen-size",
+    features: ["Окремий вхід", "Кондиціонер", "Телевізор з плоским екраном", "Wi-Fi", "Диван"],
+    bathroom: ["Ванна або душ", "Біде", "Фен", "Капці", "Рушники", "Безкоштовні туалетно-косметичні засоби"],
+    amenities: ["Шафа/гардероб", "Опалення", "Килимове покриття", "Подовжені ліжка", "Гіпоалергенні подушки"],
+    view: "Вид на місто",
+    rating: 9.0
   }
 ];
 

@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Hero from '../components/Hero/Hero';
-import About from '../components/About/About';
-import Rooms from '../components/Rooms/Rooms';
-import Services from '../components/Services/Services';
-import Gallery from '../components/Gallery/Gallery';
-import Testimonials from '../components/Testimonials/Testimonials';
-import Location from '../components/Location/Location';
+
+// Ледаче завантаження компонентів, що знаходяться поза першим екраном
+const About = lazy(() => import('../components/About/About'));
+const Rooms = lazy(() => import('../components/Rooms/Rooms'));
+const Services = lazy(() => import('../components/Services/Services'));
+const Gallery = lazy(() => import('../components/Gallery/Gallery'));
+const Testimonials = lazy(() => import('../components/Testimonials/Testimonials'));
+const Location = lazy(() => import('../components/Location/Location'));
 
 const HomePage = () => {
   return (
     <main>
+      {/* Hero-блок (перший екран) завантажується миттєво */}
       <Hero />
-      <About />
-      <Rooms />
-      <Services />
-      <Gallery />
-      <Testimonials />
-      <Location />
+
+      {/* Всі інші секції завантажуються лише тоді, коли потрібні, зменшуючи початковий бандл */}
+      <Suspense fallback={<div style={{ minHeight: '100vh' }}></div>}>
+        <About />
+        <Rooms />
+        <Services />
+        <Gallery />
+        <Testimonials />
+        <Location />
+      </Suspense>
     </main>
   );
 };
