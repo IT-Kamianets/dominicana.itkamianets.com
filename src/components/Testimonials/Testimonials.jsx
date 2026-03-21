@@ -33,55 +33,57 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="section testimonials-section">
       <div className="container">
-        <h2 className="section-title" data-animate="fade-in">Відгуки гостей</h2>
-        <p className="section-subtitle" data-animate="fade-in">
-          Що кажуть наші гості про перебування у готелі
-        </p>
+        
+        <div className="testimonials-split">
+          {/* Ліва колонка: Sticky Рейтинг */}
+          <div className="testimonials-split__left">
+            <div className="testimonials-rating-sticky">
+              <h2 className="testimonials-rating-sticky__title">Відгуки<br/>Наших Гостей</h2>
+              
+              <div className="testimonials-rating-new" data-animate="fade-in">
+                <div className="testimonials-rating-new__left">
+                  <span className="testimonials-rating-new__score">9.6</span>
+                  <span className="testimonials-rating-new__platform">на Booking.com</span>
+                </div>
+                <div className="testimonials-rating-new__divider" />
+                <div className="testimonials-rating-new__right">
+                  <span className="testimonials-rating-new__count">712 відгуків</span>
+                  <span className="testimonials-rating-new__avg">Середня оцінка: Чудово</span>
+                </div>
+              </div>
 
-        {/* Загальний рейтинг */}
-        <div className="testimonials-rating" data-animate="scale-up">
-          <span className="testimonials-rating__score">9.6</span>
-          <div className="testimonials-rating__info">
-            <span className="testimonials-rating__label">Чудово</span>
-            <span className="testimonials-rating__count">712 відгуків на Booking.com</span>
+              <a 
+                href={hotelConfig.social.booking} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="testimonials-booking-link"
+                data-animate="fade-in"
+              >
+                Більше відгуків на Booking.com ↗
+              </a>
+            </div>
+          </div>
+
+          {/* Права колонка: Змінний список відгуків */}
+          <div className="testimonials-split__right">
+            <div className="testimonials-list">
+              {reviews.map((review, i) => (
+                <div
+                  className={`testimonial-item ${i === 1 ? 'testimonial-item--alt' : ''}`}
+                  key={review.id}
+                  data-animate="fade-in"
+                  style={{ transitionDelay: `${i * 100}ms` }}
+                >
+                  {i !== 1 && <span className="testimonial-item__quote-mark">«</span>}
+                  <p className="testimonial-item__text">{review.text}</p>
+                  {i === 1 && <span className="testimonial-item__quote-mark">»</span>}
+                  <p className="testimonial-item__author">{review.name} &middot; {review.date}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Відгуки */}
-        <div className="testimonials-grid">
-          {reviews.map((review, i) => (
-            <div
-              className="testimonial-card"
-              key={review.id}
-              data-animate="slide-in-bottom"
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
-              <div className="testimonial-card__header">
-                <div className="testimonial-card__avatar">
-                  {review.name.charAt(0)}
-                </div>
-                <div>
-                  <p className="testimonial-card__name">{review.name}</p>
-                  <p className="testimonial-card__date">{review.date}</p>
-                </div>
-                <span className="testimonial-card__score">{review.rating}/10</span>
-              </div>
-              <p className="testimonial-card__text">{review.text}</p>
-              <p className="testimonial-card__source">{review.source}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="testimonials-action">
-          <a
-            href={hotelConfig.social.booking}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="testimonials-more-link"
-          >
-            Більше відгуків на Booking.com ↗
-          </a>
-        </div>
       </div>
     </section>
   );

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import HomePage from './pages/HomePage';
+import AllRoomsPage from './pages/AllRoomsPage';
 import Footer from './components/Footer/Footer';
 import BackToTop from './components/BackToTop/BackToTop';
 import { initScrollAnimations } from './hooks/useScrollAnimation';
@@ -12,12 +14,17 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Navigation />
-      <HomePage />
-      <Footer />
-      <BackToTop />
-    </div>
+    <Router>
+      <div className="App">
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/rooms" element={<AllRoomsPage />} />
+        </Routes>
+        <Footer />
+        <BackToTop />
+      </div>
+    </Router>
   );
 }
 

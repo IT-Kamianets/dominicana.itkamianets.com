@@ -1,70 +1,63 @@
-import React from 'react';
-import { hotelConfig } from '../../config';
-import Icon from '../Icon';
+import React, { useEffect, useRef, useState } from 'react';
 import './About.css';
-import hotelImage from '../../assets/images/hotel.png';
-
-const FACTS = [
-  { icon: 'map-pin',    text: '800 м до фортеці. До Ратуші — 200 м.' },
-  { icon: 'restaurant', text: 'Ресторан з українською та міжнародною кухнею.' },
-  { icon: 'power',      text: 'Власний генератор — світло, тепло та вода завжди.' },
-  { icon: 'parking',    text: 'Безкоштовна парковка та зарядка для електромобілів.' },
-];
+import hotelImage from '../../assets/images/about.webp';
 
 const About = () => {
-  return (
-    <section id="about" className="section about-section">
-      <div className="container">
-        <div className="about__layout">
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
-          {/* ── Left: photo ── */}
-          <div className="about__photo-col">
-            <div className="about__photo-frame">
-              <img
-                src={hotelImage}
-                alt="Готель У Домінікана, Кам'янець-Подільський"
-                loading="eager"
-                fetchpriority="high"
-              />
-              <div className="about__badge">
-                <span className="about__badge-score">9.6</span>
-                <span className="about__badge-label">Booking.com</span>
-                <span className="about__badge-sub">712 відгуків</span>
-              </div>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (sectionRef.current) observer.unobserve(sectionRef.current);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section id="about" ref={sectionRef} className="section cinematic-about">
+      <div className="container cinematic-container">
+
+        <div className={`cinematic-frame ${isVisible ? 'animated' : ''}`}>
+          <figure className="cinematic-bg">
+            <img
+              src={hotelImage}
+              alt="У Домінікана - Кам'янець-Подільський"
+              loading="lazy"
+            />
+            {/* Light airy overlay */}
+            <div className="cinematic-overlay-light"></div>
+          </figure>
+
+          <div className="cinematic-content" data-animate>
+            <div className="cinematic-text-box">
+              <h2 className="cinematic-title">Зупинка в серці <em>міста</em></h2>
+              <span className="cinematic-divider"></span>
+              <p className="cinematic-desc">
+                Тиша, яку не чутно в центрі.
+              </p>
+              <p className="cinematic-history">
+                10 номерів у відреставрованій будівлі поряд з 
+                Домініканським монастирем. Балкони, кондиціонери, 
+                власна ванна — і 800 метрів до фортеці.
+              </p>
+            </div>
+
+            <div className="cinematic-link-wrap">
+              <a href="#rooms" className="cinematic-link">
+                Ознайомитися з номерами <span className="arrow">&rarr;</span>
+              </a>
             </div>
           </div>
-
-          {/* ── Right: content ── */}
-          <div className="about__content">
-
-            <span className="section-eyebrow">Про готель</span>
-
-            <h2 className="about__title">
-              Зупинка в<br />
-              <em>серці міста</em>
-            </h2>
-
-            <p className="about__desc">
-              {hotelConfig.description}
-            </p>
-
-            <ul className="about__facts">
-              {FACTS.map((f, i) => (
-                <li key={i} className="about__fact">
-                  <span className="about__fact-icon">
-                    <Icon name={f.icon} size={16} />
-                  </span>
-                  <span>{f.text}</span>
-                </li>
-              ))}
-            </ul>
-
-            <a href="#rooms" className="btn btn-primary about__cta">
-              Переглянути номери
-            </a>
-          </div>
-
         </div>
+
       </div>
     </section>
   );

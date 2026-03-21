@@ -1,0 +1,73 @@
+/* ============================================
+   ALL ROOMS PAGE
+   ============================================ */
+
+.all-rooms-page {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  padding-bottom: var(--section-padding-y);
+}
+
+/* Header */
+.all-rooms-page__header {
+  padding: 140px 0 60px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 60px;
+}
+
+.all-rooms-page__back {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.2s ease;
+}
+
+.all-rooms-page__back:hover {
+  color: var(--text-primary);
+}
+
+.all-rooms-page__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin: 0 0 16px;
+  line-height: 1.1;
+}
+
+.all-rooms-page__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Rooms Grid */
+.all-rooms-page__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .all-rooms-page__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .all-rooms-page__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .all-rooms-page__grid .room-card__image-wrap {
+    height: 280px;
+  }
+}

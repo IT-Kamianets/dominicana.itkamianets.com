@@ -1,37 +1,53 @@
 import React from 'react';
-import { services } from '../../config';
-import Icon from '../Icon';
 import './Services.css';
-
-const row1 = services.slice(0, 5);
-const row2 = services.slice(5);
-
-const MarqueeRow = ({ items, reverse = false }) => (
-  <div className={`marquee-track${reverse ? ' marquee-track--reverse' : ''}`}>
-    {[...items, ...items, ...items].map((service, i) => (
-      <div key={i} className="marquee-item">
-        <div className="marquee-item__icon">
-          <Icon name={service.icon} size={18} />
-        </div>
-        <span className="marquee-item__name">{service.title}</span>
-      </div>
-    ))}
-  </div>
-);
 
 const Services = () => {
   return (
-    <section id="services" className="section services-section">
+    <section id="services" className="section experience-section">
       <div className="container">
-        <h2 className="section-title" data-animate="fade-in">Наші послуги</h2>
-        <p className="section-subtitle" data-animate="fade-in">
-          Все необхідне для вашого комфортного відпочинку
-        </p>
-      </div>
+        <div className="experience-layout">
+          
+          {/* Main Large Block (Dominant) */}
+          <div className="exp-block exp-main" data-animate="fade-in">
+            <figure className="exp-figure">
+              <img 
+                src="/rooms/5/1_main.webp" 
+                alt="Просторий та світлий номер" 
+                loading="lazy" 
+              />
+            </figure>
+            <div className="exp-content">
+              <h3 className="exp-title">Тихі ранки. М'яке світло.<br/>Абсолютний комфорт.</h3>
+              <p className="exp-text">Бездоганність у кожній деталі вашого перебування.</p>
+            </div>
+          </div>
 
-      <div className="marquee-wrap">
-        <MarqueeRow items={row1} />
-        <MarqueeRow items={row2} reverse />
+          {/* Secondary Block */}
+          <div className="exp-block exp-secondary" data-animate="fade-in">
+            <figure className="exp-figure">
+              <img 
+                src="/rooms/1/2.webp" 
+                alt="Куточок для відпочинку" 
+                loading="lazy" 
+              />
+            </figure>
+            <div className="exp-content">
+              <h4 className="exp-title-sm">Тиша та приватність</h4>
+              <p className="exp-text-sm">Ваш особистий просторий куточок для глибокого відновлення.</p>
+            </div>
+          </div>
+
+          {/* Optional Third Block */}
+          <div className="exp-block exp-tertiary" data-animate="fade-in">
+            <div className="exp-content">
+              <h4 className="exp-title-sm">Атмосфера міста</h4>
+              <p className="exp-text-sm">
+                Відчуйте подих історії, споглядаючи віковічну архітектуру прямо з вікна свого номера.
+              </p>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

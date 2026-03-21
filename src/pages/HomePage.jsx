@@ -7,6 +7,7 @@ const Rooms = lazy(() => import('../components/Rooms/Rooms'));
 const Services = lazy(() => import('../components/Services/Services'));
 const Gallery = lazy(() => import('../components/Gallery/Gallery'));
 const Testimonials = lazy(() => import('../components/Testimonials/Testimonials'));
+const Contact = lazy(() => import('../components/Contact/Contact'));
 const Location = lazy(() => import('../components/Location/Location'));
 
 const HomePage = () => {
@@ -23,6 +24,7 @@ const HomePage = () => {
         <Gallery />
         <Testimonials />
         <Location />
+        <Contact />
       </Suspense>
     </main>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { hotelConfig } from '../../config';
-import Icon from '../Icon';
 import './Location.css';
 
 const Location = () => {
@@ -9,11 +8,7 @@ const Location = () => {
       <div className="container">
 
         <div className="location__header">
-          <span className="section-eyebrow">Де нас знайти</span>
           <h2 className="section-title">Розташування</h2>
-          <p className="section-subtitle">
-            У самому серці Кам'янець-Подільського — за 800 м від фортеці
-          </p>
         </div>
 
         <div className="location__grid">
@@ -23,43 +18,33 @@ const Location = () => {
 
             {/* Address block */}
             <div className="location__contact-item">
-              <div className="location__contact-icon">
-                <Icon name="map-pin" size={18} />
-              </div>
-              <div>
-                <p className="location__contact-label">Адреса</p>
-                <p className="location__contact-value">{hotelConfig.contact.address}</p>
-              </div>
+              <p className="location__contact-label">Адреса</p>
+              <a
+                href={hotelConfig.location.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="location__contact-value location__address-link"
+              >
+                {hotelConfig.contact.address}
+              </a>
             </div>
 
             {/* Phone */}
             <div className="location__contact-item">
-              <div className="location__contact-icon">
-                <Icon name="phone" size={18} />
-              </div>
-              <div>
-                <p className="location__contact-label">Телефон</p>
-                <a
-                  href={`tel:${hotelConfig.contact.phone.replace(/\s/g, '')}`}
-                  className="location__contact-link"
-                >
-                  {hotelConfig.contact.phone}
-                </a>
-              </div>
+              <p className="location__contact-label">Телефон</p>
+              <a
+                href={`tel:${hotelConfig.contact.phone.replace(/\s/g, '')}`}
+                className="location__contact-link"
+              >
+                {hotelConfig.contact.phone}
+              </a>
             </div>
-
-
 
             {/* Hours */}
             <div className="location__contact-item">
-              <div className="location__contact-icon">
-                <Icon name="clock" size={18} />
-              </div>
-              <div>
-                <p className="location__contact-label">Реєстрація</p>
-                <p className="location__contact-value">Заїзд: 14:00 – 19:00</p>
-                <p className="location__contact-value">Виїзд: 07:00 – 11:00</p>
-              </div>
+              <p className="location__contact-label">Реєстрація</p>
+              <p className="location__contact-value">Заїзд: 14:00 – 19:00</p>
+              <p className="location__contact-value">Виїзд: 07:00 – 11:00</p>
             </div>
 
             {/* Divider */}
@@ -70,20 +55,16 @@ const Location = () => {
               <p className="location__landmarks-title">Що поряд</p>
               <ul>
                 <li>
-                  <span className="location__landmark-dot" />
-                  <span>Кам'янець-Подільська фортеця — 800 м</span>
+                  <span>— Кам'янець-Подільська фортеця · 800 м</span>
                 </li>
                 <li>
-                  <span className="location__landmark-dot" />
-                  <span>Ратуша — 200 м</span>
+                  <span>— Ратуша · 200 м</span>
                 </li>
                 <li>
-                  <span className="location__landmark-dot" />
-                  <span>Домініканський монастир — 50 м</span>
+                  <span>— Домініканський монастир · 50 м</span>
                 </li>
                 <li>
-                  <span className="location__landmark-dot" />
-                  <span>Центр міста — 1 км</span>
+                  <span>— Центр міста · 1 км</span>
                 </li>
               </ul>
             </div>
@@ -115,6 +96,15 @@ const Location = () => {
               referrerPolicy="no-referrer-when-downgrade"
               title="Розташування готелю У Домінікана"
             />
+
+            <a
+              href={hotelConfig.location.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="location__map-external-link"
+            >
+              Відкрити в Google Maps ↗
+            </a>
           </div>
         </div>
       </div>

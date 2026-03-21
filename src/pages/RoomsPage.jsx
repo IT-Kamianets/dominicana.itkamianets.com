@@ -112,7 +112,7 @@ const RoomsPage = () => {
                       >
                         Детальніше
                       </Button>
-                      <Button variant="primary">
+                      <Button variant="primary" href="/#contact">
                         Забронювати
                       </Button>
                     </div>
@@ -239,7 +239,7 @@ const RoomsPage = () => {
                 <Button variant="secondary" onClick={handleClose}>
                   Закрити
                 </Button>
-                <Button variant="primary">
+                <Button variant="primary" href="/#contact" onClick={handleClose}>
                   Забронювати номер
                 </Button>
               </Modal.Footer>
