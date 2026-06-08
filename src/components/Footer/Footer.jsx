@@ -24,6 +24,7 @@ const Footer = () => {
               <li><Link to="/#rooms">Вітрина</Link></li>
               <li><Link to="/rooms">Всі номери</Link></li>
               <li><Link to="/#services">Послуги</Link></li>
+              <li><Link to="/#gallery">Галерея</Link></li>
               <li><Link to="/#location">Розташування</Link></li>
             </ul>
           </div>
@@ -33,7 +34,7 @@ const Footer = () => {
             <ul className="footer__contacts">
               <li>
                 <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${hotelConfig.location.latitude},${hotelConfig.location.longitude}`}
+                  href={hotelConfig.location.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

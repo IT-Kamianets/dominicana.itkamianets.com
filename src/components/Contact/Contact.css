@@ -128,6 +128,14 @@
   opacity: 0.6;
 }
 
+/* ─── Error message ─── */
+.contact__error {
+  color: #c0392b;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
 /* ─── Submit row ─── */
 .contact__submit-row {
   display: flex;

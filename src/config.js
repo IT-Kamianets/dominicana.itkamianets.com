@@ -23,7 +23,7 @@ export const hotelConfig = {
   // Google Maps координати
   location: {
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.6293685865535!2d26.569981176453844!3d48.67433057130777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4733c786e2eecab5%3A0xeec4808f7c81ca43!2z0JPQvtGC0LXQu9GMIFVkb21pbmljYW5h!5e0!3m2!1sru!2sua!4v1774113148373!5m2!1sru!2sua",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=48.67433,26.56998",
+    googleMapsUrl: "https://maps.app.goo.gl/awfEkCBDnbmH4GZ3A",
     latitude: "48.67433",
     longitude: "26.56998"
   }
