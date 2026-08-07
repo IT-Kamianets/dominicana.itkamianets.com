@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { contactFormsBlocked, hotelConfig } from '../../config';
 import './Contact.css';
 
 const Contact = () => {
@@ -8,6 +9,11 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Keep this guard even while the button is disabled so programmatic form
+    // submissions cannot reach the Telegram endpoint.
+    if (contactFormsBlocked) return;
+
     setStatus('submitting');
 
     const form = e.target;
@@ -58,7 +64,9 @@ const Contact = () => {
         <div className="contact__header">
           <h2 className="contact__title">Забронювати номер</h2>
           <p className="contact__subtitle">
-            Заповніть форму — відповімо протягом кількох годин
+            {contactFormsBlocked
+              ? 'Форма тимчасово недоступна'
+              : 'Заповніть форму — відповімо протягом кількох годин'}
           </p>
         </div>
 
@@ -77,7 +85,21 @@ const Contact = () => {
               </button>
             </div>
           ) : (
-            <form className="contact__form" onSubmit={handleSubmit} aria-label="Форма бронювання номеру">
+            <form
+              className="contact__form"
+              onSubmit={handleSubmit}
+              aria-label="Форма бронювання номеру"
+              aria-describedby={contactFormsBlocked ? 'contact-form-unavailable' : undefined}
+            >
+
+              {contactFormsBlocked && (
+                <p id="contact-form-unavailable" className="contact__unavailable" role="status">
+                  Форма тимчасово не приймає заявки. Для бронювання зателефонуйте нам за номером{' '}
+                  <a href={`tel:${hotelConfig.contact.phone.replace(/\s/g, '')}`}>
+                    {hotelConfig.contact.phone}
+                  </a>.
+                </p>
+              )}
 
               <div className="contact__row">
                 <div className="contact__field">
@@ -132,8 +154,16 @@ const Contact = () => {
               )}
 
               <div className="contact__submit-row">
-                <button type="submit" className="btn btn-primary contact__submit" disabled={status === 'submitting'}>
-                  {status === 'submitting' ? 'Надсилаємо…' : 'Надіслати запит на бронювання'}
+                <button
+                  type="submit"
+                  className="btn btn-primary contact__submit"
+                  disabled={contactFormsBlocked || status === 'submitting'}
+                >
+                  {contactFormsBlocked
+                    ? 'Надсилання тимчасово недоступне'
+                    : status === 'submitting'
+                      ? 'Надсилаємо…'
+                      : 'Надіслати запит на бронювання'}
                 </button>
               </div>
             </form>
