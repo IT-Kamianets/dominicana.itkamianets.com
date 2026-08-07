@@ -240,7 +240,7 @@ const RoomsPage = () => {
                   Закрити
                 </Button>
                 <Button variant="primary" href="/#contact" onClick={handleClose}>
-                  Забронювати номер
+                  
                 </Button>
               </Modal.Footer>
             </>

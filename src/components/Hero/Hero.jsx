@@ -84,7 +84,7 @@ const Hero = () => {
             className="btn-hero"
             onClick={(e) => handleHeroScroll(e, '#contact')}
           >
-            Забронювати номер
+            
           </Link>
           <Link 
             to="/#rooms" 

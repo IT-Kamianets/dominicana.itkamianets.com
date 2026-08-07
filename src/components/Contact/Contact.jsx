@@ -62,10 +62,10 @@ const Contact = () => {
       <div className="container">
 
         <div className="contact__header">
-          <h2 className="contact__title">Забронювати номер</h2>
+          <h2 className="contact__title"></h2>
           <p className="contact__subtitle">
             {contactFormsBlocked
-              ? 'Форма тимчасово недоступна'
+              ? 'Бронювання тимчасово недоступне'
               : 'Заповніть форму — відповімо протягом кількох годин'}
           </p>
         </div>
@@ -94,7 +94,7 @@ const Contact = () => {
 
               {contactFormsBlocked && (
                 <p id="contact-form-unavailable" className="contact__unavailable" role="status">
-                  Форма тимчасово не приймає заявки. Для бронювання зателефонуйте нам за номером{' '}
+                  Бронювання тимчасово не приймає заявки. Зателефонуйте нам за номером{' '}
                   <a href={`tel:${hotelConfig.contact.phone.replace(/\s/g, '')}`}>
                     {hotelConfig.contact.phone}
                   </a>.
@@ -104,17 +104,17 @@ const Contact = () => {
               <div className="contact__row">
                 <div className="contact__field">
                   <label htmlFor="cf-name">Ім'я та прізвище</label>
-                  <input id="cf-name" name="name" type="text" placeholder="Ваше ім'я" />
+                  <input id="cf-name" name="name" type="text" placeholder="Ваше ім'я" disabled={contactFormsBlocked} />
                 </div>
                 <div className="contact__field">
                   <label htmlFor="cf-phone">Телефон <span aria-hidden="true">*</span></label>
-                  <input id="cf-phone" name="phone" type="tel" placeholder="+380 XX XXX XX XX" required />
+                  <input id="cf-phone" name="phone" type="tel" placeholder="+380 XX XXX XX XX" required disabled={contactFormsBlocked} />
                 </div>
               </div>
 
               <div className="contact__field">
                 <label htmlFor="cf-email">Email</label>
-                <input id="cf-email" name="email" type="email" placeholder="your@email.com" />
+                <input id="cf-email" name="email" type="email" placeholder="your@email.com" disabled={contactFormsBlocked} />
               </div>
 
               <div className="contact__row contact__row--dates">
@@ -124,17 +124,18 @@ const Contact = () => {
                     id="cf-checkin" name="checkIn" type="date"
                     min={today}
                     onChange={e => setCheckIn(e.target.value)}
+                    disabled={contactFormsBlocked}
                   />
                 </div>
                 <div className="contact__field">
                   <label htmlFor="cf-checkout">Дата виїзду</label>
-                  <input id="cf-checkout" name="checkOut" type="date" min={checkIn || today} />
+                  <input id="cf-checkout" name="checkOut" type="date" min={checkIn || today} disabled={contactFormsBlocked} />
                 </div>
               </div>
 
               <div className="contact__field">
                 <label htmlFor="cf-guests">Кількість гостей</label>
-                <select id="cf-guests" name="guests">
+                <select id="cf-guests" name="guests" disabled={contactFormsBlocked}>
                   {[1, 2, 3, 4].map(n => (
                     <option key={n} value={n}>{n} {n === 1 ? 'гість' : 'гостей'}</option>
                   ))}
@@ -144,7 +145,7 @@ const Contact = () => {
 
               <div className="contact__field">
                 <label htmlFor="cf-message">Додаткові побажання</label>
-                <textarea id="cf-message" name="message" rows={3} placeholder="Особливі побажання, час прибуття, запитання..." />
+                <textarea id="cf-message" name="message" rows={3} placeholder="Особливі побажання, час прибуття, запитання..." disabled={contactFormsBlocked} />
               </div>
 
               {status === 'error' && (
