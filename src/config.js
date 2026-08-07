@@ -1,6 +1,11 @@
 // CONFIG.JS - Файл конфігурації готелю
 // Тут ви можете легко змінити всі дані готелю
 
+// Тимчасове блокування всіх контактних форм.
+// Форми заблоковані за замовчуванням; встановіть
+// VITE_CONTACT_FORMS_BLOCKED=false, щоб знову дозволити надсилання.
+export const contactFormsBlocked = import.meta.env.VITE_CONTACT_FORMS_BLOCKED !== 'false';
+
 export const hotelConfig = {
   // Основна інформація
   hotelName: "Y Dominikana",

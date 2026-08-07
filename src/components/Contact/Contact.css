@@ -136,6 +136,24 @@
   margin-bottom: 0.5rem;
 }
 
+.contact__unavailable {
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(201, 169, 110, 0.55);
+  border-radius: var(--border-radius-md, 8px);
+  background: rgba(201, 169, 110, 0.1);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.contact__unavailable a {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 /* ─── Submit row ─── */
 .contact__submit-row {
   display: flex;
@@ -165,7 +183,7 @@
 
 .contact__submit:disabled {
   opacity: 0.6;
-  cursor: wait;
+  cursor: not-allowed;
 }
 
 /* ─── Success ─── */
